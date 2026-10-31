@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>คู่มือระบบ ปพ.6</title>
+<title>คู่มืออบรมครู ระบบ ปพ.6</title>
 <meta name="description" content="คู่มือการใช้งานระบบ ปพ.6 ออนไลน์ โรงเรียนวัดบางปูน ฉบับเข้าใจง่าย พร้อมภาพหน้าจอจริง">
 <meta name="theme-color" content="#7c0d14">
-<meta property="og:title" content="คู่มือระบบ ปพ.6 · โรงเรียนวัดบางปูน">
-<meta property="og:description" content="ฉบับเข้าใจง่าย มีภาพหน้าจอและหมุดชี้ทุกขั้นตอน">
+<meta property="og:title" content="คู่มืออบรมครูประจำชั้น ระบบ ปพ.6 · โรงเรียนวัดบางปูน">
+<meta property="og:description" content="สอนทีละขั้น มีภาพหน้าจอและหมุดชี้ทุกขั้นตอน">
 <link rel="icon" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,8 +84,8 @@ h1, h2, h3, .disp { font-family: "Prompt", "IBM Plex Sans Thai", sans-serif; mar
 .seal img { width: 52px; height: 52px; object-fit: contain; }
 .brand b { font-family: Prompt; font-size: 1.4rem; display: block; line-height: 1.1; }
 .brand span { color: var(--gold-2); }
-.cover h1 { font-size: clamp(2.3rem, 6vw, 4.6rem); line-height: 1.05; margin-top: 22px; font-weight: 800; }
-.cover h1 em { font-style: normal; color: var(--gold-2); }
+.cover h1 { font-size: clamp(2rem, 4.4vw, 3.9rem); line-height: 1.05; margin-top: 22px; font-weight: 800; }
+.cover h1 em { font-style: normal; color: var(--gold-2); white-space: nowrap; }
 .cover p { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: rgba(255, 236, 220, .9); line-height: 1.6; }
 .cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; padding: 14px 26px; border-radius: 999px; background: linear-gradient(180deg, #f6dc8f, #dcae45); color: #4a1d06; font-family: Prompt; font-weight: 700; font-size: 1.1rem; border: 0; cursor: pointer; box-shadow: 0 10px 24px rgba(0, 0, 0, .25); }
 .cover .screen { transform: perspective(1400px) rotateY(-10deg) rotateX(3deg); }
@@ -150,7 +150,7 @@ h1, h2, h3, .disp { font-family: "Prompt", "IBM Plex Sans Thai", sans-serif; mar
 .nav button { border: 0; background: rgba(255, 255, 255, .1); color: #fff; height: 42px; min-width: 42px; border-radius: 999px; cursor: pointer; font: 600 .95rem "Prompt", sans-serif; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 14px; }
 .nav button:hover { background: rgba(255, 255, 255, .2); }
 .nav button:disabled { opacity: .35; cursor: default; }
-.nav .next { background: linear-gradient(180deg, #f3d27a, #d9a93c); color: #4a1d06; }
+.nav .next, .nav .next:hover { background: linear-gradient(180deg, #f3d27a, #d9a93c); color: #4a1d06; }
 .nav .count { font: 600 .9rem Prompt, sans-serif; min-width: 64px; text-align: center; color: var(--gold-2); }
 .nav svg { width: 18px; height: 18px; }
 .progress { position: fixed; left: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--red-2), var(--gold)); z-index: 30; transition: width .4s; }
@@ -166,9 +166,74 @@ h1, h2, h3, .disp { font-family: "Prompt", "IBM Plex Sans Thai", sans-serif; mar
 .toc .sec { column-span: all; font-family: Prompt; font-weight: 600; color: var(--muted); font-size: .82rem; margin: 10px 10px 2px; }
 .hint { position: fixed; right: 16px; top: 14px; z-index: 20; font-size: .8rem; color: rgba(255, 255, 255, .85); background: rgba(40, 6, 10, .55); padding: 6px 12px; border-radius: 999px; }
 
+/* ===== ใหม่: ตัวติดตามขั้น / ลองทำ / QR / เช็กลิสต์ / กำหนดการ ===== */
+.track { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.dots { display: inline-flex; gap: 5px; background: #fff; padding: 4px; border-radius: 999px; box-shadow: 0 4px 14px rgba(124, 13, 20, .1); }
+.dots button { width: 26px; height: 26px; border-radius: 50%; border: 0; cursor: pointer; font: 700 .78rem Prompt, sans-serif; background: #f3e7dc; color: #a8908c; padding: 0; }
+.dots button.done { background: linear-gradient(180deg, #f1cf7a, #c08a1e); color: #fff; }
+.dots button.now { background: linear-gradient(180deg, var(--red-2), var(--red)); color: #fff; box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--gold); }
+.do { margin-top: 12px; display: flex; flex-direction: column; gap: 2px; background: linear-gradient(135deg, #e3f6ea, #cdeedb); border-radius: 16px; padding: 12px 16px; color: #17583a; border-left: 0; box-shadow: 0 8px 22px rgba(23, 88, 58, .1); }
+.do b { font-family: Prompt; font-weight: 700; font-size: 1rem; }
+.do span { font-size: .98rem; line-height: 1.5; }
+.qrbox { margin-top: 12px; display: inline-flex; align-items: center; gap: 12px; background: #fff; border-radius: 16px; padding: 10px 16px 10px 10px; box-shadow: 0 8px 22px rgba(80, 10, 15, .08); }
+.qrbox .qr { width: 92px; height: 92px; background: #fff; border-radius: 8px; padding: 4px; flex: none; }
+.qrbox b { display: block; font-family: Prompt; color: var(--deep); }
+.qrbox span { display: block; font-size: .88rem; color: var(--muted); }
+.qrbox.dk { background: rgba(255, 255, 255, .12); margin-top: 18px; } .qrbox.dk b { color: #fff; } .qrbox.dk span { color: var(--gold-2); }
+.cover-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; } .cover-row .cta { margin-top: 18px; }
+.checks { display: grid; gap: 14px; margin-top: 20px; grid-template-columns: repeat(var(--cols, 2), 1fr); }
+.checks.c3 { --cols: 3; } .chk-split .checks { --cols: 1; }
+.cg { background: #fff; border-radius: 20px; padding: 16px; box-shadow: 0 10px 26px rgba(80, 10, 15, .08); }
+.cgh { display: flex; align-items: center; gap: 10px; }
+.cgh .ic { width: 42px; height: 42px; border-radius: 13px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; background: color-mix(in srgb, var(--c) 16%, #fff); }
+.cgh b { font-family: Prompt; font-size: 1.1rem; color: var(--deep); }
+.cg ul { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.cg li { display: flex; gap: 10px; align-items: flex-start; padding: 7px 8px; border-radius: 10px; cursor: pointer; font-size: .96rem; line-height: 1.45; user-select: none; }
+.cg li:hover { background: #fbf4ec; }
+.cg li i { flex: none; width: 22px; height: 22px; border-radius: 7px; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c) 55%, #fff); margin-top: 1px; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-style: normal; font-size: .8rem; transition: background .15s; }
+.cg li.ok i { background: var(--c); box-shadow: none; } .cg li.ok i::before { content: "✓"; font-weight: 700; }
+.cg li.ok span { color: var(--muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--c) 60%, transparent); }
+.chk-split { align-items: start; }
+.agenda { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; max-width: 980px; }
+.ag { display: grid; grid-template-columns: auto 110px 1fr auto; gap: 16px; align-items: center; background: #fff; border-radius: 18px; padding: 12px 18px 12px 12px; text-decoration: none; color: inherit; box-shadow: 0 8px 22px rgba(80, 10, 15, .07); transition: transform .15s; }
+.ag:hover { transform: translateX(4px); }
+.ag .no { width: 40px; height: 40px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; font: 700 1.1rem Prompt, sans-serif; color: #fff; background: var(--c); }
+.ag .tm { font: 600 .95rem Prompt, sans-serif; color: var(--c); background: color-mix(in srgb, var(--c) 12%, #fff); border-radius: 999px; padding: 4px 12px; text-align: center; }
+.ag b { display: block; font-family: Prompt; color: var(--deep); font-size: 1.08rem; }
+.ag div span { display: block; color: var(--muted); font-size: .92rem; }
+.ag .go { font: 600 .85rem Prompt, sans-serif; color: var(--red); white-space: nowrap; }
+
+/* ===== ชี้ทีละจุด ===== */
+.walk { margin: 0 0 10px; font-size: .88rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.walk span { display: inline-flex; width: 22px; height: 22px; border-radius: 50%; align-items: center; justify-content: center; background: var(--gold); color: #4a1d06; font-size: .6rem; }
+.walk b { color: var(--deep); }
+.steps.walkable li { scroll-margin-bottom: 110px; cursor: pointer; transition: opacity .3s, transform .3s, box-shadow .3s; }
+.walking .steps.walkable li { opacity: .42; }
+.walking .steps.walkable li.cur { opacity: 1; transform: translateX(6px) scale(1.02); box-shadow: 0 0 0 3px var(--red-2), 0 14px 30px rgba(124, 13, 20, .22); }
+.walking .steps.walkable li.cur .num { animation: pop .5s ease; }
+.walking .screen .mk { opacity: 0; transition: opacity .3s; }
+.walking .screen .mk.cur { opacity: 1; z-index: 2; animation: none; box-shadow: 0 0 0 3px var(--gold), 0 0 0 9999px rgba(30, 4, 8, .55); }
+.walking .screen .mk.cur .num { transform: scale(1.25); }
+.zoom { position: absolute; z-index: 3; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 0 0 3px var(--gold), 0 18px 40px rgba(0, 0, 0, .45); opacity: 0; transform: scale(.85); transition: opacity .35s, transform .35s; pointer-events: none; }
+.zoom.on { opacity: 1; transform: none; }
+.zoom i { position: absolute; inset: 0; background-repeat: no-repeat; }
+.zoom span { position: absolute; left: 8px; top: 8px; font: 600 .7rem Prompt, sans-serif; color: #fff; background: rgba(110, 11, 18, .85); padding: 2px 9px; border-radius: 999px; line-height: 1.6; }
+@keyframes pop { 40% { transform: scale(1.35); } }
+/* เปิดสไลด์แล้วรายการค่อย ๆ ขึ้น */
+.slide.on .steps li, .slide.on .cg, .slide.on .item, .slide.on .ag, .slide.on .st, .slide.on .tl, .slide.on .qa { animation: rise .5s backwards; }
+.slide.on .steps li:nth-child(2), .slide.on .cg:nth-child(2), .slide.on .item:nth-child(2), .slide.on .ag:nth-child(2), .slide.on .st:nth-child(2), .slide.on .tl:nth-child(2), .slide.on .qa:nth-child(2) { animation-delay: .06s; }
+.slide.on .steps li:nth-child(3), .slide.on .cg:nth-child(3), .slide.on .item:nth-child(3), .slide.on .ag:nth-child(3), .slide.on .st:nth-child(3), .slide.on .tl:nth-child(3), .slide.on .qa:nth-child(3) { animation-delay: .12s; }
+.slide.on .steps li:nth-child(n+4), .slide.on .cg:nth-child(n+4), .slide.on .item:nth-child(n+4), .slide.on .ag:nth-child(n+4), .slide.on .st:nth-child(n+4), .slide.on .tl:nth-child(n+4), .slide.on .qa:nth-child(n+4) { animation-delay: .18s; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+@media (prefers-reduced-motion: reduce) { .slide.on * { animation: none !important; } }
+
 /* ===== จอเล็ก ===== */
 @media (max-width: 1100px) { .box { grid-template-columns: repeat(3, 1fr); } .nine { grid-template-columns: repeat(5, 1fr); } .timeline { grid-template-columns: repeat(4, 1fr); } .roles { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 860px) {
+  .walking .split .media { position: sticky; top: -14px; z-index: 5; }
+  .walking .steps.walkable li { scroll-margin-top: 48vw; }
+  .checks, .checks.c3 { --cols: 1; }
+  .ag { grid-template-columns: auto 1fr; } .ag .tm { grid-column: 2; justify-self: start; order: -1; } .ag .go { display: none; } .ag .no { grid-row: span 2; }
   .split, .split.wide, .cover { grid-template-columns: 1fr; }
   .split .media { order: -1; }
   .cover .screen { transform: none; }
@@ -202,84 +267,98 @@ const MARKS = {"landing":{"w":1280,"h":800,"m":[{"x":25.85,"y":75.89,"w":19.98,"
 const URL_SYS = "pp6-watbangpoon.web.app";
 
 // ===== เนื้อหาสไลด์ =====
-// type: cover | box | roles | screen | nine | book | phones | timeline | faq | end
+// type: cover | box | check | agenda | screen | nine | book | phones | timeline | faq | end
 const S = [
-  { sec: "เริ่มต้น", type: "cover", t: "หน้าปก" },
+  { sec: "ก่อนเริ่มอบรม", type: "cover", t: "หน้าปก" },
   { type: "box", t: "ในระบบมีอะไรบ้าง", k: "แกะกล่อง", title: "ในระบบ ปพ.6 <em>มีอะไรบ้าง</em>",
-    lead: "ทุกอย่างที่ครูต้องใช้ตอนปลายภาค รวมอยู่ในเว็บเดียว เปิดได้จากคอม แท็บเล็ต และมือถือ" },
-  { type: "roles", t: "ใครใช้ทำอะไร", k: "บทบาท", title: "ใครใช้<em>ทำอะไร</em>", lead: "แต่ละคนเห็นเมนูไม่เหมือนกัน ระบบเปิดให้เฉพาะส่วนที่เกี่ยวข้อง" },
-  { type: "screen", t: "เข้าสู่ระบบ", k: "ขั้นแรก", img: "landing", title: "เปิดเว็บ แล้ว<em>เข้าสู่ระบบ</em>",
-    lead: "เปิดลิงก์ระบบที่ได้จากผู้ดูแล บนคอมหรือมือถือก็ได้",
-    steps: [["กด \"เข้าด้วยชื่อผู้ใช้และรหัสผ่าน\"", "ครูส่วนใหญ่ใช้ปุ่มนี้ ใช้ชื่อผู้ใช้และรหัสที่ผู้ดูแลให้"], ["หรือ \"เข้าสู่ระบบด้วย Google\"", "สำหรับผู้ที่ใช้อีเมลโรงเรียน @wbps.ac.th"]],
-    tip: "เปิดลิงก์จากในแอป LINE แล้วล็อกอิน Google ไม่ได้ ให้กด ⋮ แล้วเลือก \"เปิดในเบราว์เซอร์\" หรือใช้ชื่อผู้ใช้แทน" },
-  { type: "screen", t: "กรอกชื่อผู้ใช้", k: "เข้าสู่ระบบ", img: "login", title: "กรอก<em>ชื่อผู้ใช้</em>และรหัสผ่าน",
-    steps: [["ชื่อผู้ใช้", "ภาษาอังกฤษ เช่น somsri ถ้าแป้นเป็นภาษาไทย ระบบแปลงให้เอง"], ["รหัสผ่าน", "ตัวเลข 6 หลักที่ได้รับ"], ["รูปตา", "กดเพื่อดูว่าพิมพ์รหัสถูกไหม"], ["กดเข้าสู่ระบบ", "ถ้าผิด ระบบจะบอกว่าผิดที่ชื่อผู้ใช้หรือรหัสผ่าน"]],
-    tip: "ลืมรหัสผ่าน แจ้งผู้ดูแลระบบให้กด \"ตั้งรหัสใหม่\" ได้ทันที" },
-  { type: "screen", t: "เข้าครั้งแรก", k: "ครั้งแรก", img: "t-welcome", title: "เข้าครั้งแรก มี<em>กล่องแนะนำ</em>",
-    steps: [["เปิดคู่มือ", "ไปหน้าคู่มือในระบบ อ่านทีละหัวข้อ"], ["เริ่มใช้งาน", "ปิดกล่องแล้วเริ่มทำงานได้เลย กล่องนี้จะไม่ขึ้นอีก"]] },
-  { type: "screen", t: "เปลี่ยนรหัสผ่าน", k: "ครั้งแรก", img: "t-chpw", title: "เปลี่ยน<em>รหัสผ่าน</em>เป็นของตัวเอง",
-    lead: "เมนูซ้ายล่าง \"เปลี่ยนรหัสผ่าน\" (มือถือ: แถบล่าง › อื่น ๆ)",
-    steps: [["รหัสผ่านเดิม", "รหัสที่ได้จากผู้ดูแล"], ["รหัสผ่านใหม่", "ตัวเลขอย่างน้อย 6 ตัวที่จำง่าย"], ["พิมพ์ซ้ำอีกครั้ง", "แล้วกดบันทึกรหัสผ่านใหม่"]] },
-  { type: "screen", t: "หน้าจอหลัก", k: "รู้จักหน้าจอ", img: "t-home", title: "รู้จัก<em>หน้าจอหลัก</em>",
-    steps: [["เมนู", "ห้องเรียนของฉัน · พิมพ์ ปพ.6 · รายชื่อแต่ละชั้น · คู่มือ"], ["ภาคเรียนปัจจุบัน", "จุดเขียว = เปิดบันทึก · จุดแดง = ล็อกแล้ว แก้ไม่ได้"], ["การ์ดห้องเรียน", "กดเพื่อเข้าห้อง แถบสีบอกว่าทำไปกี่ขั้นแล้ว"], ["ชื่อและบทบาท", "ตรวจว่าเข้าบัญชีของตัวเอง"]] },
+    lead: "ทุกอย่างที่ครูประจำชั้นต้องใช้ตอนปลายภาค รวมอยู่ในเว็บเดียว เปิดได้จากคอม แท็บเล็ต และมือถือ" },
+  { type: "check", t: "ครูเตรียมอะไรมาบ้าง", k: "เตรียมตัว", title: "ครูต้อง<em>เตรียมอะไรมา</em>วันอบรม",
+    lead: "เตรียมให้ครบ จะได้ลงมือทำห้องของตัวเองจริงในห้องอบรม กดที่รายการเพื่อติ๊กว่าเตรียมแล้ว",
+    groups: [
+      ["💻", "อุปกรณ์", "--c6", ["โน้ตบุ๊ก หรือคอมพิวเตอร์ (แนะนำ)", "มือถือ สำหรับถ่ายรูปและลองใช้", "สายชาร์จ", "เบราว์เซอร์ Chrome หรือ Edge"]],
+      ["🔑", "บัญชีเข้าใช้", "--c1", ["ชื่อผู้ใช้ + รหัสผ่านเริ่มต้น ที่ได้จากผู้ดูแล", "คิดรหัสผ่านใหม่ไว้ (ตัวเลข 6 ตัวขึ้นไป)", "ลิงก์ระบบ หรือสแกน QR ในห้องอบรม"]],
+      ["📂", "ข้อมูลห้องตัวเอง", "--c4", ["รายชื่อนักเรียน + เลขประจำตัว", "รูปถ่ายนักเรียน ตั้งชื่อไฟล์เป็นเลขประจำตัว เช่น 4101.jpg", "ข้อมูลส่วนตัว: วันเกิด ผู้ปกครอง ที่อยู่", "ไฟล์ใบแสดงผลการเรียน PDF จากโปรแกรมของโรงเรียน"]],
+      ["📒", "ข้อมูลประเมิน", "--c2", ["เวลาเรียนรายเดือน (สมุดเช็กชื่อ)", "น้ำหนัก ส่วนสูง", "ผลประเมินคุณลักษณะ / อ่าน คิดวิเคราะห์ เขียน", "ร่างความเห็นครูรายคน"]],
+    ],
+    tip: "ข้อมูลยังไม่ครบก็มาอบรมได้ ระบบบันทึกให้ทุกช่อง กลับไปทำต่อทีหลังได้" },
+  { type: "agenda", t: "กำหนดการอบรม", k: "ประมาณ 2 ชั่วโมง", title: "<em>กำหนดการ</em>อบรม",
+    lead: "สอนทีละขั้น ครูทำตามบนเครื่องของตัวเองไปพร้อมกัน" },
 
-  { sec: "ครูประจำชั้น 9 ขั้น", type: "nine", t: "ภาพรวม 9 ขั้น", k: "หัวใจของระบบ", title: "ครูทำงานตาม <em>9 ขั้น</em> ต่อภาคเรียน", lead: "ทำเรียงจากซ้ายไปขวา ทุกช่องบันทึกอัตโนมัติ ไม่ต้องกดบันทึก ทำไม่เสร็จปิดไปก่อนได้" },
-  { type: "screen", t: "ขั้น 1 ข้อมูลนักเรียน", k: "ขั้นที่ 1", img: "t-info", title: "ข้อมูลนักเรียน<em>และรูปถ่าย</em>",
-    steps: [["วงกลม 9 ขั้น", "สีทอง = เสร็จแล้ว · วงแดง = ขั้นที่ต้องทำต่อ กดวงไหนก็ไปขั้นนั้น"], ["เพิ่มนักเรียน", "เพิ่มทีละคน หรือวางรายชื่อจาก Excel ได้ (เฉพาะห้องตัวเอง)"], ["อัปโหลดรูปทั้งห้อง", "ตั้งชื่อไฟล์เป็นเลขประจำตัว เช่น 4101.jpg ระบบตัดรูป 3×4 ให้"], ["กรอกข้อมูลรายคน", "กดเพื่อเปิดฟอร์มข้อมูลส่วนตัวของนักเรียนคนนั้น"]],
+  { sec: "ภารกิจ 1 เข้าสู่ระบบ", type: "screen", t: "เปิดเว็บ", k: "ภารกิจ 1", img: "landing", qr: 1, title: "เปิดเว็บ แล้ว<em>เข้าสู่ระบบ</em>",
+    lead: "สแกน QR หรือพิมพ์ลิงก์ระบบในเบราว์เซอร์",
+    steps: [["กด \"เข้าด้วยชื่อผู้ใช้และรหัสผ่าน\"", "ใช้ชื่อผู้ใช้และรหัสที่ได้จากผู้ดูแล"], ["หรือ \"เข้าสู่ระบบด้วย Google\"", "สำหรับครูที่ใช้อีเมลโรงเรียน @wbps.ac.th"]],
+    tip: "เปิดลิงก์จากในแอป LINE แล้วเข้าไม่ได้ ให้กด ⋮ แล้วเลือก \"เปิดในเบราว์เซอร์\"" },
+  { type: "screen", t: "กรอกชื่อผู้ใช้", k: "ภารกิจ 1", img: "login", title: "กรอก<em>ชื่อผู้ใช้</em>และรหัสผ่าน",
+    steps: [["ชื่อผู้ใช้", "ภาษาอังกฤษ เช่น somsri ถ้าแป้นเป็นภาษาไทย ระบบแปลงให้เอง"], ["รหัสผ่าน", "ตัวเลข 6 หลักที่ได้รับ"], ["รูปตา", "กดเพื่อดูว่าพิมพ์รหัสถูกไหม"], ["กดเข้าสู่ระบบ", "ถ้าผิด ระบบบอกว่าผิดที่ชื่อผู้ใช้หรือรหัสผ่าน"]],
+    do: "เข้าสู่ระบบด้วยบัญชีของตัวเองให้สำเร็จ" },
+  { type: "screen", t: "เข้าครั้งแรก", k: "ภารกิจ 1", img: "t-welcome", title: "เข้าครั้งแรก มี<em>กล่องแนะนำ</em>",
+    steps: [["เปิดคู่มือ", "คู่มือในระบบ อ่านทวนได้ทุกเมื่อ"], ["เริ่มใช้งาน", "ปิดกล่องแล้วเริ่มทำงานได้เลย กล่องนี้จะไม่ขึ้นอีก"]] },
+  { type: "screen", t: "เปลี่ยนรหัสผ่าน", k: "ภารกิจ 1", img: "t-chpw", title: "เปลี่ยน<em>รหัสผ่าน</em>เป็นของตัวเอง",
+    lead: "เมนูซ้ายล่าง \"เปลี่ยนรหัสผ่าน\" (มือถือ: แถบล่าง › อื่น ๆ)",
+    steps: [["รหัสผ่านเดิม", "รหัสที่ได้จากผู้ดูแล"], ["รหัสผ่านใหม่", "ตัวเลขอย่างน้อย 6 ตัวที่จำง่าย"], ["พิมพ์ซ้ำอีกครั้ง", "แล้วกดบันทึกรหัสผ่านใหม่"]],
+    do: "เปลี่ยนรหัสผ่าน แล้วจดไว้ในที่ปลอดภัย" },
+  { type: "screen", t: "หน้าจอหลัก", k: "ภารกิจ 1", img: "t-home", title: "รู้จัก<em>หน้าจอหลัก</em>",
+    steps: [["เมนู", "ห้องเรียนของฉัน · พิมพ์ ปพ.6 · รายชื่อแต่ละชั้น · คู่มือ"], ["ภาคเรียนปัจจุบัน", "จุดเขียว = เปิดบันทึก · จุดแดง = ล็อกแล้ว แก้ไม่ได้"], ["การ์ดห้องเรียน", "กดเพื่อเข้าห้อง แถบสีบอกว่าทำไปกี่ขั้นแล้ว"], ["ชื่อและบทบาท", "ตรวจว่าเข้าบัญชีของตัวเอง"]],
+    do: "ตรวจว่าเห็นการ์ดห้องของตัวเอง แล้วกดเข้าห้อง" },
+
+  { sec: "ภารกิจ 2 ทำ 9 ขั้น", type: "nine", t: "ภาพรวม 9 ขั้น", k: "ภารกิจ 2", title: "ครูทำงานตาม <em>9 ขั้น</em> ต่อภาคเรียน", lead: "ทำเรียงตามลำดับ ทุกช่องบันทึกอัตโนมัติ ไม่ต้องกดบันทึก ทำไม่เสร็จปิดไปก่อนได้" },
+  { type: "screen", st: 1, t: "ขั้น 1 ข้อมูลนักเรียน", img: "t-info", title: "ข้อมูลนักเรียน<em>และรูปถ่าย</em>",
+    steps: [["วงกลม 9 ขั้น", "สีทอง = เสร็จแล้ว · วงแดง = ขั้นที่ต้องทำต่อ กดวงไหนก็ไปขั้นนั้น"], ["เพิ่มนักเรียน", "ถ้ามีนักเรียนตกหล่น เพิ่มทีละคน หรือวางรายชื่อจาก Excel"], ["อัปโหลดรูปทั้งห้อง", "เลือกรูปทั้งหมดพร้อมกัน ชื่อไฟล์ = เลขประจำตัว ระบบตัดรูป 3×4 ให้"], ["กรอกข้อมูลรายคน", "กดชื่อนักเรียนเพื่อเปิดฟอร์มข้อมูลส่วนตัว"]],
+    do: "อัปโหลดรูปนักเรียน แล้วกรอกข้อมูลนักเรียน 1 คน",
     tip: "กรอกครั้งเดียวตอนต้นปี ปีต่อไปแค่ตรวจและแก้ส่วนที่เปลี่ยน" },
-  { type: "screen", t: "ข้อมูลรายคน", k: "ขั้นที่ 1", img: "t-student", title: "หน้า<em>ข้อมูลนักเรียน</em>รายคน",
-    steps: [["อัปโหลดรูป", "เลือกรูปจากเครื่องหรือถ่ายจากมือถือ"], ["ใบแสดงผลการเรียน", "ดูหรือเปลี่ยนใบเกรดของคนนี้ได้"], ["ไปคนถัดไป", "กรอกต่อเนื่องได้โดยไม่ต้องกลับไปที่ตาราง"]] },
-  { type: "screen", t: "ขั้น 2 เวลาเรียน", k: "ขั้นที่ 2", img: "t-att", title: "กรอก<em>เวลาเรียน</em>ทุกสิ้นเดือน",
-    steps: [["เลือกเดือน", "จำนวนวันเต็มของเดือนแสดงอยู่ในวงเล็บ"], ["มาครบทุกคนในเดือนนี้", "กดทีเดียว ทุกคนได้วันเต็ม"], ["แก้เฉพาะคนที่ขาด", "พิมพ์จำนวนวันที่มาจริง"]],
+  { type: "screen", st: 1, t: "ข้อมูลรายคน", img: "t-student", title: "หน้า<em>ข้อมูลนักเรียน</em>รายคน",
+    steps: [["อัปโหลดรูป", "เลือกรูปจากเครื่อง หรือถ่ายจากมือถือ"], ["ใบแสดงผลการเรียน", "ดูหรือเปลี่ยนใบเกรดของคนนี้ได้"], ["ไปคนถัดไป", "กรอกต่อเนื่องได้โดยไม่ต้องกลับไปที่ตาราง"]] },
+  { type: "screen", st: 2, t: "ขั้น 2 เวลาเรียน", img: "t-att", title: "กรอก<em>เวลาเรียน</em>ทุกสิ้นเดือน",
+    steps: [["เลือกเดือน", "จำนวนวันเต็มของเดือนแสดงในวงเล็บ"], ["มาครบทุกคนในเดือนนี้", "กดทีเดียว ทุกคนได้วันเต็ม"], ["แก้เฉพาะคนที่ขาด", "พิมพ์จำนวนวันที่มาจริง"]],
+    do: "กรอกเวลาเรียนเดือนล่าสุดของห้อง",
     tip: "ใครเวลาเรียนต่ำกว่า 80% ระบบขึ้นสีแดงเตือน (เข้าข่าย มส)" },
-  { type: "screen", t: "ขั้น 3 อัปโหลดใบเกรด", k: "ขั้นที่ 3", img: "t-grades-check", title: "อัปโหลด<em>ใบแสดงผลการเรียน</em>",
+  { type: "screen", st: 3, t: "ขั้น 3 อัปโหลดใบเกรด", img: "t-grades-check", title: "อัปโหลด<em>ใบแสดงผลการเรียน</em>",
     lead: "ลากไฟล์ PDF จากโปรแกรมของโรงเรียนมาวาง ไฟล์เดียวทั้งห้องได้",
     steps: [["ระบบอ่านใบทีละหน้า", "ตรวจความคมชัดให้ ขึ้นว่า \"คุณภาพผ่าน\""], ["จับคู่นักเรียนให้เอง", "อ่านรหัสนักเรียนในใบ ถ้าผิดเลือกชื่อใหม่ได้"], ["กดบันทึกภาพ", "บันทึกทั้งหมดในครั้งเดียว"]],
+    do: "อัปโหลดไฟล์ใบเกรดของห้อง แล้วตรวจว่าจับคู่ชื่อถูก",
     tip: "ประถมใส่ปีละครั้งตอนภาคเรียนที่ 2 · มัธยมใส่ทุกภาค" },
-  { type: "screen", t: "ขั้น 3 ตรวจและยืนยัน", k: "ขั้นที่ 3", img: "t-grades", title: "ตรวจภาพ แล้ว<em>ยืนยัน</em>",
+  { type: "screen", st: 3, t: "ขั้น 3 ตรวจและยืนยัน", img: "t-grades", title: "ตรวจภาพ แล้ว<em>ยืนยัน</em>",
     steps: [["กล่องอัปโหลด", "อัปโหลดเพิ่มได้ตลอด ภาพใหม่แทนภาพเดิม"], ["ยืนยันภาพที่รอตรวจทั้งหมด", "ตรวจแล้วกดทีเดียวทั้งห้อง"], ["ดูภาพ / เปลี่ยนภาพรายคน", "ใช้แก้ใบที่ผิดคนหรือไม่ชัด"]] },
-  { type: "screen", t: "ขั้น 4 คุณลักษณะ", k: "ขั้นที่ 4", img: "t-traits", title: "ประเมิน<em>คุณลักษณะ 8 ข้อ</em>",
-    steps: [["ตั้งทุกข้อทั้งห้อง", "เลือกครั้งเดียว ทุกคนทุกข้อได้ระดับเดียวกัน"], ["ตั้งทั้งคอลัมน์", "ตั้งข้อเดียวให้ทั้งห้อง"], ["แก้รายคน", "ค่าเริ่มต้นเป็น \"ดี\" แก้เฉพาะคนที่ต่าง"], ["ตรวจแล้ว ยืนยันขั้นนี้", "กดเมื่อตรวจครบ วงกลมจะเป็นสีทอง"]] },
-  { type: "screen", t: "ขั้น 5 ประเมินอื่น", k: "ขั้นที่ 5", img: "t-eval", title: "ประเมินอื่น<em>และสุขภาพ</em>",
-    steps: [["ตั้งทั้งห้อง", "อ่าน คิดวิเคราะห์ เขียน · สมรรถนะ · กิจกรรม"], ["น้ำหนัก (กก.)", "กรอกรายคน"], ["ส่วนสูง (ซม.)", "ขั้นนี้ผ่านเมื่อกรอกน้ำหนักส่วนสูงครบ"]] },
-  { type: "screen", t: "ขั้น 6 หน้าที่", k: "ขั้นที่ 6", img: "t-duties", title: "หน้าที่<em>ที่โรงเรียน</em>",
+  { type: "screen", st: 4, t: "ขั้น 4 คุณลักษณะ", img: "t-traits", title: "ประเมิน<em>คุณลักษณะ 8 ข้อ</em>",
+    steps: [["ตั้งทุกข้อทั้งห้อง", "เลือกครั้งเดียว ทุกคนทุกข้อได้ระดับเดียวกัน"], ["ตั้งทั้งคอลัมน์", "ตั้งข้อเดียวให้ทั้งห้อง"], ["แก้รายคน", "ค่าเริ่มต้นเป็น \"ดี\" แก้เฉพาะคนที่ต่าง"], ["ตรวจแล้ว ยืนยันขั้นนี้", "กดเมื่อตรวจครบ วงกลมจะเป็นสีทอง"]],
+    do: "ตั้งระดับทั้งห้อง แก้รายคน 1 คน แล้วกดยืนยัน" },
+  { type: "screen", st: 5, t: "ขั้น 5 ประเมินอื่น", img: "t-eval", title: "ประเมินอื่น<em>และสุขภาพ</em>",
+    steps: [["ตั้งทั้งห้อง", "อ่าน คิดวิเคราะห์ เขียน · สมรรถนะ · กิจกรรม"], ["น้ำหนัก (กก.)", "กรอกรายคน"], ["ส่วนสูง (ซม.)", "ขั้นนี้ผ่านเมื่อกรอกน้ำหนักส่วนสูงครบ"]],
+    do: "กรอกน้ำหนัก ส่วนสูง ของนักเรียน 2–3 คน" },
+  { type: "screen", st: 6, t: "ขั้น 6 หน้าที่", img: "t-duties", title: "หน้าที่<em>ที่โรงเรียน</em>",
     steps: [["ติ๊กทุกข้อไว้ให้แล้ว", "เอาออกเฉพาะคนที่ไม่ได้ปฏิบัติ"], ["ยืนยันขั้นนี้", "กดเมื่อตรวจครบ"]] },
-  { type: "screen", t: "ขั้น 7 ความเห็นครู", k: "ขั้นที่ 7", img: "t-comment", title: "เขียน<em>ความเห็นครู</em>",
-    steps: [["ข้อความสำเร็จรูป", "เลือกแล้วแก้ต่อได้ (ถ้าผู้ดูแลตั้งไว้)"], ["ช่องความเห็น", "พิมพ์เองได้เลย ความเห็นนี้พิมพ์ลงในเล่ม"]] },
-  { type: "screen", t: "ขั้น 8 พิมพ์เล่ม", k: "ขั้นที่ 8", img: "t-send", title: "<em>พิมพ์เล่ม</em>ส่งผู้ปกครอง",
+  { type: "screen", st: 7, t: "ขั้น 7 ความเห็นครู", img: "t-comment", title: "เขียน<em>ความเห็นครู</em>",
+    steps: [["ข้อความสำเร็จรูป", "เลือกแล้วแก้ต่อได้ (ถ้าโรงเรียนตั้งไว้)"], ["ช่องความเห็น", "พิมพ์เองได้เลย ความเห็นนี้พิมพ์ลงในเล่ม"]],
+    do: "เขียนความเห็นให้นักเรียน 1 คน" },
+  { type: "screen", st: 8, t: "ขั้น 8 พิมพ์เล่ม", img: "t-send", title: "<em>พิมพ์เล่ม</em>ส่งผู้ปกครอง",
     steps: [["พิมพ์ทั้งห้อง", "เปิดเล่มของทุกคนแล้วสั่งพิมพ์ทีเดียว"], ["โหลดทั้งห้อง (ZIP)", "ได้ PDF แยกคนละไฟล์ ไปพิมพ์ร้านหรือส่งไลน์"], ["ทำเครื่องหมายว่าส่งแล้ว", "กดหลังแจกเล่มให้นักเรียน"], ["PDF รายคน", "โหลดเล่มของคนเดียว"]] },
-  { type: "screen", t: "หน้าเล่มรายงาน", k: "ขั้นที่ 8", img: "t-book", title: "หน้า<em>เล่มรายงาน</em>",
-    steps: [["เลือกนักเรียน", "รายคน หรือทั้งห้อง"], ["หน้าที่พิมพ์", "ทั้งเล่ม · เฉพาะหน้าที่เปลี่ยนภาคนี้ · เฉพาะหน้าที่ผู้ปกครองเซ็น"], ["พิมพ์", "กระดาษ A4 · ขอบ (Margins) = ไม่มี · ขนาด 100%"], ["โหลด PDF", "ได้ไฟล์ A4 ฟอนต์ TH Sarabun"]] },
-  { type: "book", t: "ในเล่ม ปพ.6 มีอะไร", k: "เล่มรายงาน", title: "ในเล่ม <em>ปพ.6</em> มีอะไรบ้าง", lead: "กระดาษ A4 · 1 เล่มใช้ 3 ปี · ประถม 11 หน้า มัธยม 14 หน้า · ใบเกรดครบทุกปีทุกภาค" },
-  { type: "screen", t: "ขั้น 9 รับเล่มคืน", k: "ขั้นที่ 9", img: "t-returns", title: "<em>รับเล่มคืน</em> ด้วยการสแกน",
+  { type: "screen", st: 8, t: "หน้าเล่มรายงาน", img: "t-book", title: "หน้า<em>เล่มรายงาน</em>",
+    steps: [["เลือกนักเรียน", "รายคน หรือทั้งห้อง"], ["หน้าที่พิมพ์", "ทั้งเล่ม · เฉพาะหน้าที่เปลี่ยนภาคนี้ · เฉพาะหน้าที่ผู้ปกครองเซ็น"], ["พิมพ์", "กระดาษ A4 · ขอบ (Margins) = ไม่มี · ขนาด 100%"], ["โหลด PDF", "ได้ไฟล์ A4 ฟอนต์ TH Sarabun"]],
+    do: "เปิดเล่มของนักเรียน 1 คน แล้วกดโหลด PDF" },
+  { type: "book", st: 8, t: "ในเล่ม ปพ.6 มีอะไร", title: "ในเล่ม <em>ปพ.6</em> มีอะไรบ้าง", lead: "กระดาษ A4 · 1 เล่มใช้ 3 ปี · ประถม 11 หน้า มัธยม 14 หน้า · ใบเกรดครบทุกปีทุกภาค" },
+  { type: "screen", st: 9, t: "ขั้น 9 รับเล่มคืน", img: "t-returns", title: "<em>รับเล่มคืน</em> ด้วยการสแกน",
     lead: "สแกนหน้าที่ผู้ปกครองเซ็นทั้งปึกเป็น PDF ไฟล์เดียว หรือถ่ายรูปทีละหน้า",
     steps: [["ลากไฟล์สแกนมาวาง", "ระบบอ่าน QR ท้ายหน้า แยกเข้าแฟ้มของแต่ละคนให้"], ["ดูว่าได้หน้าไหนแล้ว", "สถานะเปลี่ยนเป็น \"รับคืนแล้ว\""]],
     tip: "หน้าที่อ่าน QR ไม่ได้ เลือกนักเรียนและหน้าเองแล้วกดบันทึก · อย่าขีดเขียนทับ QR" },
 
-  { sec: "เมนูอื่น ๆ", type: "screen", t: "เมนูพิมพ์ ปพ.6", k: "เมนู", img: "t-print", title: "เมนู <em>พิมพ์ ปพ.6</em>",
+  { sec: "ภารกิจ 3 เมนูอื่น ๆ", type: "screen", t: "เมนูพิมพ์ ปพ.6", k: "ภารกิจ 3", img: "t-print", title: "เมนู <em>พิมพ์ ปพ.6</em>",
     steps: [["พิมพ์ทั้งห้อง", "เปิดเล่มทุกคนพร้อมพิมพ์"], ["โหลดทั้งห้อง (ZIP)", "PDF แยกรายคน"], ["ดู/พิมพ์ · PDF รายคน", "พร้อมสถานะเล่มของแต่ละคน"], ["แบบฟอร์มเปล่า (PDF)", "เล่มไม่มีข้อมูล สำหรับกรอกด้วยมือ"]] },
-  { type: "screen", t: "รายชื่อแต่ละชั้น", k: "เมนู", img: "t-roster", title: "<em>รายชื่อ</em>แต่ละชั้น",
-    steps: [["เลือกชั้น", "ทุกชั้น หรือชั้นเดียว"], ["โหลด Excel / พิมพ์", "พิมพ์ห้องละหน้า ใช้เป็นใบเช็กชื่อได้"], ["เพิ่มนักเรียน", "ครูประจำชั้นเพิ่มในห้องตัวเองได้"]] },
-  { type: "screen", t: "คู่มือในระบบ", k: "เมนู", img: "t-guide", title: "<em>คู่มือ</em>ในระบบ",
-    steps: [["แท็บตามบทบาท", "เริ่มต้น · 9 ขั้น · ปฏิทินงาน · คำถามที่พบบ่อย"], ["ปุ่มพาไปหน้านั้น", "กดแล้วไปทำขั้นนั้นได้ทันที"]] },
-  { type: "phones", t: "ใช้บนมือถือ", k: "มือถือ", title: "ใช้บน<em>มือถือ</em>ได้ครบ", lead: "เมนูย้ายไปอยู่แถบล่าง วงกลม 9 ขั้นพอดีจอ" ,
-    phones: [["m-home", ["แถบเมนูล่าง", "การ์ดห้องเรียน", "อื่น ๆ (เปลี่ยนรหัส / ออกจากระบบ)"]], ["m-room", ["วงกลม 9 ขั้น", "ไปขั้นถัดไป"]], ["m-more", ["ชื่อผู้ใช้ · เปลี่ยนรหัส · ออกจากระบบ"]]] },
+  { type: "screen", t: "รายชื่อแต่ละชั้น", k: "ภารกิจ 3", img: "t-roster", title: "<em>รายชื่อ</em>แต่ละชั้น",
+    steps: [["เลือกชั้น", "ทุกชั้น หรือชั้นเดียว"], ["โหลด Excel / พิมพ์", "พิมพ์ห้องละหน้า ใช้เป็นใบเช็กชื่อได้"], ["เพิ่มนักเรียน", "ครูประจำชั้นเพิ่มในห้องตัวเองได้"]],
+    do: "โหลดรายชื่อห้องตัวเองเป็น Excel" },
+  { type: "screen", t: "คู่มือในระบบ", k: "ภารกิจ 3", img: "t-guide", title: "<em>คู่มือ</em>ในระบบ",
+    steps: [["แท็บหัวข้อ", "เริ่มต้น · 9 ขั้น · ปฏิทินงาน · คำถามที่พบบ่อย"], ["ปุ่มพาไปหน้านั้น", "กดแล้วไปทำขั้นนั้นได้ทันที"]] },
+  { type: "phones", t: "ใช้บนมือถือ", k: "ภารกิจ 3", title: "ใช้บน<em>มือถือ</em>ได้ครบ", lead: "เมนูย้ายไปอยู่แถบล่าง วงกลม 9 ขั้นพอดีจอ",
+    phones: [["m-home", ["แถบเมนูล่าง", "การ์ดห้องเรียน", "อื่น ๆ (เปลี่ยนรหัส / ออกจากระบบ)"]], ["m-room", ["วงกลม 9 ขั้น", "ไปขั้นถัดไป"]], ["m-more", ["ชื่อผู้ใช้ · เปลี่ยนรหัส · ออกจากระบบ"]]],
+    do: "เข้าระบบจากมือถือของตัวเองอีกเครื่อง" },
 
-  { sec: "ผู้ดูแลระบบ", type: "screen", t: "ตั้งค่าระบบ", k: "ผู้ดูแล", img: "a-settings", title: "ผู้ดูแล: <em>ตั้งค่าระบบ</em>",
-    steps: [["ตราโรงเรียน", "อัปโหลดได้ ระบบลบพื้นหลังให้เอง"], ["ชื่อโรงเรียน", "พิมพ์บนปกเล่มและหัวกระดาษ"], ["ปีการศึกษา", "พ.ศ."], ["ภาคเรียน", "เปลี่ยนเมื่อขึ้นภาคใหม่"]],
-    tip: "เลื่อนลงในหน้าเดียวกัน: สังกัด ที่อยู่ คำขวัญ วันเรียนแต่ละเดือน ข้อความสำเร็จรูป ล็อกภาค และสำรองข้อมูล" },
-  { type: "screen", t: "ห้องเรียน", k: "ผู้ดูแล", img: "a-rooms", title: "ผู้ดูแล: <em>ห้องเรียน</em>",
-    steps: [["เพิ่มห้อง", "เลือกชั้น ห้องเริ่ม และจำนวนห้อง"], ["ชื่อห้องไม่มีทับ", "โรงเรียนชั้นละห้องเดียว: ป.1 แทน ป.1/1"], ["ครูประจำชั้น", "ใส่ได้หลายคน คั่นด้วยจุลภาค"]] },
-  { type: "screen", t: "นักเรียน", k: "ผู้ดูแล", img: "a-students", title: "ผู้ดูแล: <em>นักเรียน</em>",
-    steps: [["นำเข้าจาก Excel", "ไฟล์ .xlsx หรือ .csv"], ["ดาวน์โหลดแม่แบบ", "กรอกตามคอลัมน์แล้วนำเข้า"], ["วางรายชื่อหลายคน", "คัดลอกจาก Excel มาวางได้เลย"], ["เพิ่มรายคน", "แก้ไข/ย้ายห้อง/ย้ายออก ทำได้ในตาราง"]] },
-  { type: "screen", t: "สร้างบัญชีครู", k: "ผู้ดูแล", img: "a-users", title: "ผู้ดูแล: <em>สร้างบัญชีครู</em>",
-    steps: [["ชื่อ-สกุลครู", "ชื่อที่จะขึ้นบนปกเล่ม"], ["ชื่อผู้ใช้", "ภาษาอังกฤษ a-z 0-9"], ["รหัสผ่านเริ่มต้น", "แก้เป็นรหัสที่ต้องการได้"], ["สร้างบัญชี", "ได้การ์ดชื่อผู้ใช้/รหัส คัดลอกส่งครู"]] },
-  { type: "screen", t: "สร้างหลายบัญชี", k: "ผู้ดูแล", img: "a-users-bulk", title: "สร้าง<em>หลายบัญชี</em>พร้อมกัน",
-    steps: [["แถวละคน", "ชื่อ-สกุล, ชื่อผู้ใช้, ห้อง, รหัสผ่าน (ไม่ใส่รหัส = สุ่มให้)"], ["สร้างทุกบัญชี", "แล้วโหลดรายการรหัสเป็น Excel เก็บไว้แจกครู"]] },
-  { type: "screen", t: "บทบาทและห้อง", k: "ผู้ดูแล", img: "a-users-table", title: "กำหนด<em>บทบาทและห้อง</em>",
-    steps: [["บทบาท", "ครูที่ปรึกษา · ผู้บริหาร · ผู้ดูแลระบบ"], ["ห้องที่ประจำชั้น", "คนเดียวหลายบทบาท: เลือกบทบาทสูงสุดแล้วติ๊กห้อง"], ["บันทึก", "บันทึกทีละแถว · มีปุ่มตั้งรหัสใหม่และปิดบัญชีใต้ชื่อ"]] },
-
-  { sec: "สรุป", type: "timeline", t: "ปฏิทินงาน", k: "ตลอดปี", title: "<em>ปฏิทินงาน</em>ตลอดปีการศึกษา" },
+  { sec: "สรุป", type: "timeline", t: "ปฏิทินงานของครู", k: "ตลอดปี", title: "<em>ปฏิทินงาน</em>ของครูประจำชั้น" },
+  { type: "check", t: "เช็กก่อนกลับ", k: "ทบทวน", title: "ก่อนกลับ <em>ทำได้หรือยัง?</em>", lead: "ติ๊กข้อที่ทำได้แล้ว ข้อไหนยังไม่ได้ ถามวิทยากรได้เลย",
+    groups: [
+      ["✅", "เข้าระบบ", "--c4", ["เข้าระบบด้วยบัญชีของตัวเองได้", "เปลี่ยนรหัสผ่านแล้ว", "เข้าห้องเรียนของตัวเองได้"]],
+      ["📋", "ทำ 9 ขั้น", "--c1", ["อัปโหลดรูป + กรอกข้อมูลนักเรียน", "กรอกเวลาเรียนรายเดือน", "อัปโหลดใบเกรด แล้วตรวจชื่อ", "ประเมินขั้น 4–7 แล้วกดยืนยัน"]],
+      ["🖨️", "พิมพ์และส่ง", "--c6", ["เปิดเล่ม / โหลด PDF ได้", "รู้วิธีสแกนรับเล่มคืน", "รู้ว่าติดปัญหาแล้วถามใคร"]],
+    ] },
   { type: "faq", t: "ปัญหาที่พบบ่อย", k: "ช่วยเหลือ", title: "ปัญหา<em>ที่พบบ่อย</em>" },
   { type: "end", t: "ปิดท้าย" },
 ];
@@ -292,23 +371,30 @@ const BOX = [
   ["🔳", "สแกน QR รับเล่มคืน", "แยกเข้าแฟ้มนักเรียนให้เอง", "--c4", ""],
   ["📝", "แบบฟอร์มเปล่า", "พิมพ์ไปกรอกด้วยมือได้", "--c3", "PDF"],
   ["👥", "รายชื่อแต่ละชั้น", "ชาย/หญิง พิมพ์หรือโหลด Excel", "--c5", ""],
-  ["📊", "รายงานผู้บริหาร", "ความคืบหน้าทุกห้อง", "--c7", ""],
+  ["📸", "ตัดรูปนักเรียนให้", "อัปโหลดทั้งห้อง ได้รูป 3×4", "--c7", ""],
   ["📱", "ใช้ได้ทุกอุปกรณ์", "คอม แท็บเล็ต มือถือ", "--c8", ""],
-  ["🔒", "แบ่งสิทธิ์ชัดเจน", "ครูเห็นเฉพาะห้องตัวเอง", "--c1", "4 บทบาท"],
+  ["🔒", "ข้อมูลปลอดภัย", "ครูเห็นเฉพาะห้องตัวเอง", "--c1", ""],
 ];
-const ROLES = [
-  ["👩‍🏫", "ครูประจำชั้น", ["ทำ 9 ขั้นในห้องตัวเอง", "เพิ่มนักเรียนในห้อง", "พิมพ์ / โหลดเล่ม", "สแกนรับเล่มคืน"], "#ffe3d6"],
-  ["🧑‍💼", "ผู้บริหาร", ["ดูรายงานทุกห้อง", "ดูเล่มรายคน", "รายชื่อแต่ละชั้น", "แก้ได้เฉพาะห้องที่ประจำชั้น"], "#e0ecff"],
-  ["🛠️", "ผู้ดูแลระบบ", ["ตั้งค่า ห้อง นักเรียน", "สร้างบัญชีครู", "ล็อกภาค สำรองข้อมูล", "เลื่อนชั้นสิ้นปี"], "#fff0c9"],
-  ["👑", "ผู้ดูแลระบบหลัก", ["ทำได้ทุกอย่าง", "แต่งตั้ง/ถอดผู้ดูแล", "อัปเดตระบบ", "ดูแลฝั่ง Firebase"], "#ffe0ee"],
+const AGENDA = [
+  ["15 นาที", "ภารกิจ 1 เข้าสู่ระบบ", "เปิดเว็บ เข้าระบบ เปลี่ยนรหัสผ่าน รู้จักหน้าจอ", "--c6", "เปิดเว็บ"],
+  ["30 นาที", "ขั้น 1–3", "ข้อมูลนักเรียน รูปถ่าย เวลาเรียน อัปโหลดใบเกรด", "--c1", "ขั้น 1 ข้อมูลนักเรียน"],
+  ["25 นาที", "ขั้น 4–7", "คุณลักษณะ ประเมินอื่น หน้าที่ ความเห็นครู", "--c2", "ขั้น 4 คุณลักษณะ"],
+  ["20 นาที", "ขั้น 8–9", "พิมพ์เล่ม โหลด PDF รับเล่มคืนด้วยการสแกน", "--c4", "ขั้น 8 พิมพ์เล่ม"],
+  ["10 นาที", "ภารกิจ 3 เมนูอื่น ๆ", "พิมพ์ ปพ.6 · รายชื่อแต่ละชั้น · ใช้บนมือถือ", "--c5", "เมนูพิมพ์ ปพ.6"],
+  ["20 นาที", "ลงมือทำห้องตัวเอง + ถามตอบ", "เช็กก่อนกลับ ทำได้ครบทุกข้อ", "--c7", "เช็กก่อนกลับ"],
 ];
 const NINE = [["ข้อมูลนักเรียน", "และรูปถ่าย"], ["เวลาเรียน", "ทุกสิ้นเดือน"], ["ใบเกรด", "อัปโหลดทั้งห้อง"], ["คุณลักษณะ", "8 ข้อ"], ["ประเมินอื่น", "สุขภาพ"], ["หน้าที่", "ที่โรงเรียน"], ["ความเห็นครู", "รายคน"], ["พิมพ์เล่ม", "ส่งผู้ปกครอง"], ["รับเล่มคืน", "สแกน QR"]];
-const TL = [["พ.ค.", "ต้นปีการศึกษา", "ผู้ดูแลตั้งค่า เพิ่มห้อง นักเรียน บัญชีครู · ครูทำขั้นที่ 1", "--c6"], ["ทุกเดือน", "สิ้นเดือน", "ครูกรอกเวลาเรียน (ขั้น 2)", "--c5"], ["ระหว่างภาค", "ทยอยทำ", "คุณลักษณะ ประเมินอื่น หน้าที่ ความเห็น (ขั้น 4–7)", "--c4"], ["ปลายภาค", "ได้ใบเกรดแล้ว", "อัปโหลดใบเกรด (ขั้น 3) แล้วพิมพ์เล่ม (ขั้น 8)", "--c2"], ["หลังส่งเล่ม", "1–2 สัปดาห์", "รับเล่มคืน สแกนอัปโหลด (ขั้น 9)", "--c1"], ["ปิดภาค", "ผู้ดูแล", "ล็อกภาค · สำรองข้อมูล · เปลี่ยนภาคเรียน", "--c7"], ["มี.ค.", "สิ้นปี", "เลื่อนชั้น ข้อมูลเก่าอยู่ครบ ต่อเล่มเดิม", "--c9"]];
-const FAQ = [["ลืมรหัสผ่าน", "แจ้งผู้ดูแล กด \"ตั้งรหัสใหม่\" แล้วเปลี่ยนเป็นรหัสของตัวเอง"], ["ขึ้นว่ารหัสผ่านไม่ถูกต้อง", "กดรูปตาดูว่าพิมพ์ถูกไหม ตรวจ Caps Lock"], ["เข้าระบบไม่ได้ / network", "กด Ctrl + F5 · ลองหน้าต่างไม่ระบุตัวตน · ลองเน็ตมือถือ"], ["เปิดจาก LINE แล้วล็อกอินไม่ได้", "กด ⋮ › เปิดในเบราว์เซอร์ หรือใช้ชื่อผู้ใช้แทน"], ["ใบเกรดไม่ผ่านคุณภาพ", "ใช้ไฟล์ PDF จากโปรแกรม หรือถ่ายใหม่ให้ชัด"], ["พิมพ์แล้วหน้าเกิน", "A4 · ขอบ = ไม่มี · ขนาด 100% หรือพิมพ์จาก PDF"], ["สแกน QR ไม่ได้", "สแกน 200 dpi ขึ้นไป อย่าให้ QR พับหรือมีรอยปากกา"], ["ช่องเป็นสีเทาแก้ไม่ได้", "ภาคเรียนถูกล็อก หรือไม่ใช่ห้องของคุณ แจ้งผู้ดูแล"]];
+const TL = [["พ.ค.", "ต้นปีการศึกษา", "ตรวจรายชื่อ อัปโหลดรูป กรอกข้อมูลนักเรียน (ขั้น 1)", "--c6"], ["ทุกเดือน", "สิ้นเดือน", "กรอกเวลาเรียน (ขั้น 2)", "--c5"], ["ระหว่างภาค", "ทยอยทำ", "คุณลักษณะ ประเมินอื่น หน้าที่ ความเห็น (ขั้น 4–7)", "--c4"], ["ปลายภาค", "ได้ใบเกรดแล้ว", "อัปโหลดใบเกรด (ขั้น 3)", "--c3"], ["ส่งเล่ม", "หลังสอบ", "พิมพ์เล่ม แจกนักเรียน (ขั้น 8)", "--c2"], ["1–2 สัปดาห์", "หลังส่งเล่ม", "รับเล่มคืน สแกนอัปโหลด (ขั้น 9)", "--c1"], ["ปีถัดไป", "เลื่อนชั้น", "ข้อมูลเดิมอยู่ครบ ทำต่อในเล่มเดิม", "--c9"]];
+const FAQ = [["ลืมรหัสผ่าน", "แจ้งผู้ดูแล กด \"ตั้งรหัสใหม่\" แล้วเปลี่ยนเป็นรหัสของตัวเอง"], ["ขึ้นว่ารหัสผ่านไม่ถูกต้อง", "กดรูปตาดูว่าพิมพ์ถูกไหม ตรวจ Caps Lock"], ["เข้าระบบไม่ได้ / network", "กด Ctrl + F5 · ลองหน้าต่างไม่ระบุตัวตน · ลองเน็ตมือถือ"], ["เปิดจาก LINE แล้วเข้าไม่ได้", "กด ⋮ › เปิดในเบราว์เซอร์ หรือใช้ชื่อผู้ใช้แทน"], ["ใบเกรดไม่ผ่านคุณภาพ", "ใช้ไฟล์ PDF จากโปรแกรม หรือถ่ายใหม่ให้ชัด"], ["พิมพ์แล้วหน้าเกิน", "A4 · ขอบ = ไม่มี · ขนาด 100% หรือพิมพ์จาก PDF"], ["สแกน QR ไม่ได้", "สแกน 200 dpi ขึ้นไป อย่าให้ QR พับหรือมีรอยปากกา"], ["ไม่เห็นห้องของตัวเอง / ช่องแก้ไม่ได้", "ภาคเรียนถูกล็อก หรือยังไม่ได้ผูกห้อง แจ้งผู้ดูแล"]];
 
 // ===== วาดสไลด์ =====
 const esc = (s) => String(s);
 const kick = (k, i) => `<div class="kicker"><b>${i}</b>${k}</div>`;
+const firstOfStep = (st) => S.findIndex((x) => x.st === st);
+const track = (st) => `<div class="track"><span class="kicker"><b>ขั้นที่ ${st}</b>จาก 9 · ${NINE[st - 1][0]}</span><span class="dots">${NINE.map((x, j) => `<button class="${j + 1 < st ? "done" : j + 1 === st ? "now" : ""}" data-go="${firstOfStep(j + 1)}" title="ขั้นที่ ${j + 1} ${x[0]}">${j + 1 < st ? "✓" : j + 1}</button>`).join("")}</span></div>`;
+const head = (s, n) => s.st ? track(s.st) : kick(s.k, n);
+const qrBox = (dark) => `<div class="qrbox ${dark ? "dk" : ""}"><img class="qr" src="img/qr.svg" alt="QR เข้าระบบ"><div><b>สแกนเพื่อเปิดระบบ</b><span>${URL_SYS}</span></div></div>`;
+const doBox = (t) => t ? `<div class="do"><b>✋ ลองทำเลย</b><span>${t}</span></div>` : "";
 function marksHtml(name, n) {
   const M = MARKS[name]; if (!M) return "";
   return M.m.slice(0, n).map((m, i) => m ? `<div class="mk" data-i="${i}" style="left:${m.x}%;top:${m.y}%;width:${m.w}%;height:${m.h}%"><span class="num">${i + 1}</span></div>` : "").join("");
@@ -321,33 +407,36 @@ function render(s, i) {
   switch (s.type) {
     case "cover": return `<section class="slide dark"><div class="inner"><div class="cover">
       <div><div class="brand"><div class="seal"><img src="img/logo.png" alt="ตราโรงเรียน"></div><div><b>ระบบ ปพ.6</b><span>โรงเรียนวัดบางปูน</span></div></div>
-        <h1>คู่มือการใช้งาน<br><em>ฉบับเข้าใจง่าย</em></h1>
-        <p>ดูทีละหน้า มีภาพหน้าจอจริง และหมุดตัวเลขชี้ว่าต้องกดตรงไหน<br>ใช้ได้ทั้งครูประจำชั้น ผู้บริหาร และผู้ดูแลระบบ</p>
-        <button class="cta" data-go="1">เริ่มดูคู่มือ →</button></div>
+        <h1>อบรมการใช้งาน<br><em>สำหรับครูประจำชั้น</em></h1>
+        <p>สอนทีละขั้น ทำตามบนเครื่องของตัวเองไปพร้อมกัน<br>มีภาพหน้าจอจริง และหมุดตัวเลขชี้ว่าต้องกดตรงไหน</p>
+        <div class="cover-row"><button class="cta" data-go="1">เริ่มอบรม →</button>${qrBox(1)}</div></div>
       <div>${desk("landing", 0)}</div></div></div></section>`;
     case "box": return `<section class="slide"><div class="inner">${kick(s.k, "📦")}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
       <div class="box">${BOX.map(([ic, b, sp, c, q]) => `<div class="item" style="--c:var(${c})">${q ? `<span class="qty">${q}</span>` : ""}<div class="ic">${ic}</div><b>${b}</b><span>${sp}</span></div>`).join("")}</div></div></section>`;
-    case "roles": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
-      <div class="roles">${ROLES.map(([ic, h, li, c]) => `<div class="role"><div class="ic" style="--c:${c}">${ic}</div><h3>${h}</h3><ul>${li.map((x) => `<li>${x}</li>`).join("")}</ul></div>`).join("")}</div></div></section>`;
-    case "screen": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2>${s.lead ? `<p class="lead">${s.lead}</p>` : ""}
-      <div class="split ${s.steps.length <= 2 ? "wide" : ""}"><div><ol class="steps">${s.steps.map(([b, sp], j) => `<li data-i="${j}"><span class="num">${j + 1}</span><div><b>${b}</b><span>${sp}</span></div></li>`).join("")}</ol>
-        ${s.tip ? `<div class="tip">${s.tip}</div>` : ""}</div>
+    case "check": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
+      <div class="${s.img ? "split chk-split" : ""}"><div><div class="checks c${s.groups.length}">${s.groups.map(([ic, h, c, li]) => `<div class="cg" style="--c:var(${c})"><div class="cgh"><span class="ic">${ic}</span><b>${h}</b></div><ul>${li.map((x) => `<li tabindex="0"><i></i><span>${x}</span></li>`).join("")}</ul></div>`).join("")}</div>
+      ${s.tip ? `<div class="tip">${s.tip}</div>` : ""}</div>${s.img ? `<div class="media">${desk(s.img, 0)}</div>` : ""}</div></div></section>`;
+    case "agenda": return `<section class="slide"><div class="inner">${kick(s.k, "⏱")}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
+      <div class="agenda">${AGENDA.map(([tm, h, d, c, t], j) => `<a class="ag" href="#" data-go="${S.findIndex((x) => x.t === t)}" style="--c:var(${c})"><span class="no">${j + 1}</span><span class="tm">${tm}</span><div><b>${h}</b><span>${d}</span></div><span class="go">ไปที่สไลด์ ›</span></a>`).join("")}</div></div></section>`;
+    case "screen": return `<section class="slide"><div class="inner">${head(s, n)}<h2 class="title">${s.title}</h2>${s.lead ? `<p class="lead">${s.lead}</p>` : ""}
+      <div class="split ${s.steps.length <= 2 ? "wide" : ""}"><div><p class="walk"><span>▶</span> กด <b>ถัดไป</b> เพื่อชี้ทีละจุด</p><ol class="steps walkable">${s.steps.map(([b, sp], j) => `<li data-i="${j}"><span class="num">${j + 1}</span><div><b>${b}</b><span>${sp}</span></div></li>`).join("")}</ol>
+        ${doBox(s.do)}${s.tip ? `<div class="tip">${s.tip}</div>` : ""}${s.qr ? qrBox() : ""}</div>
         <div class="media">${desk(s.img, s.steps.length)}</div></div></div></section>`;
     case "nine": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
       <div class="nine">${NINE.map(([b, sp], j) => `<div class="st" style="--c:var(--c${j + 1})"><div class="n">${j + 1}</div><b>${b}</b><span>${sp}</span></div>`).join("")}</div>
       <div class="legend"><span><i style="background:linear-gradient(180deg,#f1cf7a,#c08a1e)"></i>วงสีทอง = ทำเสร็จแล้ว</span><span><i style="background:#fff;box-shadow:inset 0 0 0 3px #b0141d"></i>วงขอบแดง = ขั้นที่ต้องทำต่อ</span><span><i style="background:#fff;box-shadow:inset 0 0 0 3px #ecd9c6"></i>วงเทา = ยังไม่ถึง</span></div>
       <div style="margin-top:18px">${desk("t-info", 1)}</div></div></section>`;
-    case "book": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
+    case "book": return `<section class="slide"><div class="inner">${head(s, n)}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
       <div class="pages">${[["page-1", "ปกหน้า"], ["page-4", "ใบแสดงผลการเรียน"], ["page-7", "คุณลักษณะ"], ["page-10", "ความคิดเห็น"]].map(([f, l], j) => `<div class="pg" style="transform:rotate(${[-5, -1.5, 1.5, 5][j]}deg)"><img src="img/book-${f}.webp" alt="${l}" loading="lazy"><em>${l}</em></div>`).join("")}</div>
       <div class="toc-pages">${["ปกหน้า", "คำชี้แจง", "ข้อมูลส่วนตัว / เวลาเรียน", "ใบแสดงผลการเรียนทุกปีทุกภาค", "คุณลักษณะ / การประเมิน", "ความเห็นครู", "ความเห็นผู้ปกครอง", "ความคิดเห็นเกี่ยวกับนักเรียน", "ปกหลัง"].map((x, j) => `<span><b>${j + 1}</b>${x}</span>`).join("")}</div></div></section>`;
     case "phones": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
-      <div class="phones">${s.phones.map(([img, labels]) => `<div><div>${phone(img, labels.length)}</div><ol class="steps" style="margin-top:14px;max-width:290px">${labels.map((l, j) => `<li data-i="${j}"><span class="num">${j + 1}</span><div><b>${l}</b></div></li>`).join("")}</ol></div>`).join("")}</div></div></section>`;
+      <div class="phones">${s.phones.map(([img, labels]) => `<div><div>${phone(img, labels.length)}</div><ol class="steps" style="margin-top:14px;max-width:290px">${labels.map((l, j) => `<li data-i="${j}"><span class="num">${j + 1}</span><div><b>${l}</b></div></li>`).join("")}</ol></div>`).join("")}</div><div style="max-width:560px;margin:8px auto 0;width:100%">${doBox(s.do)}</div></div></section>`;
     case "timeline": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2>
       <div class="timeline">${TL.map(([w, b, sp, c]) => `<div class="tl" style="--c:var(${c})"><span class="when">${w}</span><b>${b}</b><span>${sp}</span></div>`).join("")}</div></div></section>`;
     case "faq": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2>
       <div class="faq">${FAQ.map(([q, a], j) => `<div class="qa" style="--c:var(--c${(j % 9) + 1})"><b>${q}</b><span>${a}</span></div>`).join("")}</div></div></section>`;
     case "end": return `<section class="slide dark"><div class="inner"><div class="end"><div class="seal"><img src="img/logo.png" alt="ตราโรงเรียน"></div>
-      <h1>พร้อมใช้งานแล้ว 🎉</h1><p class="lead" style="text-align:center">ติดตรงไหน ดูเมนู "คู่มือ" ในระบบ หรือแจ้งผู้ดูแลระบบของโรงเรียน</p>
+      <h1>พร้อมใช้งานแล้ว 🎉</h1><p class="lead" style="text-align:center">กลับไปทำห้องของตัวเองต่อได้เลย ติดตรงไหน ดูเมนู "คู่มือ" ในระบบ หรือถามผู้ดูแลระบบของโรงเรียน</p>
       <div class="url">${URL_SYS}</div><p class="lead" style="text-align:center;margin-top:20px">พัฒนาโดย เพจตามติดชีวิต KruSos</p>
       <button class="cta" data-go="0">กลับไปหน้าแรก</button></div></div></section>`;
   }
@@ -360,28 +449,63 @@ let cur = 0;
 function show(i, push = true) {
   i = Math.max(0, Math.min(slides.length - 1, i));
   slides.forEach((s, k) => { s.classList.toggle("on", k === i); s.classList.toggle("prev", k < i); });
-  cur = i; slides[i].scrollTop = 0;
+  if (slides[cur] && cur !== i) { slides[cur].classList.remove("walking"); slides[cur].querySelectorAll(".cur").forEach((x) => x.classList.remove("cur")); slides[cur].querySelectorAll(".zoom").forEach((z) => z.classList.remove("on")); }
+  cur = i; sub = -1; slides[i].scrollTop = 0;
   document.getElementById("cnt").textContent = `${i + 1} / ${slides.length}`;
   document.getElementById("prog").style.width = `${(i + 1) / slides.length * 100}%`;
   document.getElementById("bPrev").disabled = i === 0;
-  document.getElementById("bNext").disabled = i === slides.length - 1;
+  document.getElementById("bNext").disabled = false;
   if (push) history.replaceState(null, "", `#${i + 1}`);
   [...document.querySelectorAll("#tocList a")].forEach((a) => a.classList.toggle("cur", +a.dataset.go === i));
   // โหลดภาพของสไลด์ถัดไปไว้ก่อน
   slides[i + 1]?.querySelectorAll("img[loading=lazy]").forEach((im) => (im.loading = "eager"));
 }
-document.getElementById("bPrev").onclick = () => show(cur - 1);
-document.getElementById("bNext").onclick = () => show(cur + 1);
+// ===== ชี้ทีละจุด: กดถัดไปแล้วหมุดถัดไปสว่าง ที่เหลือมืดลง =====
+let sub = -1;
+const walkList = () => slides[cur].querySelector(".steps.walkable");
+function zoomFor(sl, k) {
+  const mk = sl.querySelector(`.screen .mk[data-i="${k}"]`); const shot = mk?.closest(".shot"); if (!shot) return;
+  let z = shot.querySelector(".zoom"); if (!z) { z = document.createElement("div"); z.className = "zoom"; z.innerHTML = "<i></i><span>ซูม</span>"; shot.appendChild(z); }
+  const W = shot.clientWidth, H = shot.clientHeight, f = (v) => parseFloat(v) / 100;
+  let x = f(mk.style.left), y = f(mk.style.top), w = f(mk.style.width), h = f(mk.style.height);
+  const cx = x + w / 2, cy = y + h / 2;
+  let rw = Math.max(w + 0.06, 0.2), rh = Math.max(h + 0.06 * W / H, rw * W / H * 0.45);
+  if (rh * H > rw * W * 1.1) rw = rh * H / W / 1.1;           // ไม่ให้สูงเกินไป
+  rw = Math.min(rw, 0.9); rh = Math.min(rh, 0.9);
+  let rx = Math.min(Math.max(cx - rw / 2, 0), 1 - rw), ry = Math.min(Math.max(cy - rh / 2, 0), 1 - rh);
+  const zw = Math.min(0.42, 0.62 * rw * 2.4) , zh = zw * W * (rh * H) / (rw * W) / H;   // ขยายประมาณ 2 เท่า
+  const img = shot.querySelector("img").src;
+  z.querySelector("i").style.cssText = `background-image:url("${img}");background-size:${100 / rw}% ${100 / rh}%;background-position:${rw >= 1 ? 0 : rx / (1 - rw) * 100}% ${rh >= 1 ? 0 : ry / (1 - rh) * 100}%`;
+  z.style.width = zw * 100 + "%"; z.style.height = Math.min(zh, 0.8) * 100 + "%";
+  z.style.left = cx < 0.5 ? "auto" : "3%"; z.style.right = cx < 0.5 ? "3%" : "auto";
+  z.style.top = cy < 0.5 ? "auto" : "4%"; z.style.bottom = cy < 0.5 ? "4%" : "auto";
+  z.classList.add("on");
+}
+function setSub(k) {
+  const sl = slides[cur], ol = walkList(); sub = k;
+  sl.classList.toggle("walking", k >= 0);
+  sl.querySelectorAll(".cur").forEach((x) => x.classList.remove("cur"));
+  sl.querySelectorAll(".zoom").forEach((z) => z.classList.remove("on"));
+  if (!ol || k < 0) return;
+  sl.querySelectorAll(`.steps.walkable li[data-i="${k}"], .screen .mk[data-i="${k}"]`).forEach((x) => x.classList.add("cur"));
+  ol.querySelector(`li[data-i="${k}"]`)?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  zoomFor(sl, k);
+}
+function next() { const ol = walkList(); const n = ol ? ol.children.length : 0; if (sub < n - 1) setSub(sub + 1); else show(cur + 1); }
+function prev() { if (sub >= 0) setSub(sub - 1); else show(cur - 1); }
+document.getElementById("bPrev").onclick = prev;
+document.getElementById("bNext").onclick = next;
+document.addEventListener("click", (e) => { const li = e.target.closest(".steps.walkable li, .screen .mk .num"); if (!li) return; const i = +(li.closest("li") || li.closest(".mk")).dataset.i; setSub(sub === i ? -1 : i); });
 document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") { e.preventDefault(); show(cur + 1); }
-  if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); show(cur - 1); }
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") { e.preventDefault(); next(); }
+  if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); prev(); }
   if (e.key === "Home") show(0); if (e.key === "End") show(slides.length - 1);
   if (e.key === "Escape") toc.classList.remove("on");
 });
 // ปัดซ้าย/ขวาบนมือถือ
 let tx = 0, ty = 0;
 deck.addEventListener("touchstart", (e) => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
-deck.addEventListener("touchend", (e) => { const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.4) show(cur + (dx < 0 ? 1 : -1)); }, { passive: true });
+deck.addEventListener("touchend", (e) => { const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.4) (dx < 0 ? next : prev)(); }, { passive: true });
 // สารบัญ
 const toc = document.getElementById("toc");
 document.getElementById("tocList").innerHTML = S.map((s, i) => `${s.sec ? `<li class="sec">${s.sec}</li>` : ""}<li><a href="#${i + 1}" data-go="${i}"><i>${i + 1}</i>${s.t}</a></li>`).join("");
@@ -397,6 +521,9 @@ document.addEventListener("pointerover", (e) => {
   box.querySelectorAll(`.steps li[data-i="${i}"], .mk[data-i="${i}"]`).forEach((x) => x.classList.add("hot"));
 });
 show(Math.max(0, (parseInt(location.hash.slice(1)) || 1) - 1), false);
+// ติ๊กเช็กลิสต์
+document.addEventListener("click", (e) => { const li = e.target.closest(".cg li"); if (li) li.classList.toggle("ok"); });
+document.addEventListener("keydown", (e) => { const li = e.target.closest?.(".cg li"); if (li && (e.key === "Enter")) li.classList.toggle("ok"); });
 </script>
 </body>
 </html>
