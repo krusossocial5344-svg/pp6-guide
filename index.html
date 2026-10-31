@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>คู่มือระบบ ปพ.6</title>
+<meta name="description" content="คู่มือการใช้งานระบบ ปพ.6 ออนไลน์ โรงเรียนวัดบางปูน ฉบับเข้าใจง่าย พร้อมภาพหน้าจอจริง">
+<meta name="theme-color" content="#7c0d14">
+<meta property="og:title" content="คู่มือระบบ ปพ.6 · โรงเรียนวัดบางปูน">
+<meta property="og:description" content="ฉบับเข้าใจง่าย มีภาพหน้าจอและหมุดชี้ทุกขั้นตอน">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@500;600;700;800&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap">
+<style>
+:root {
+  --red: #b0141d; --red-2: #d22a33; --deep: #6e0b12; --deeper: #3e060a;
+  --gold: #e7c25d; --gold-2: #f3d98c; --gold-ink: #5b3f05; --cream: #fff8ee; --ink: #2b1517; --muted: #7d6164;
+  --c1: #e2453c; --c2: #f08c2e; --c3: #e9b52d; --c4: #3aa76d; --c5: #2f9e9e; --c6: #3d7fd6; --c7: #7a5cd6; --c8: #c4489b; --c9: #a8141f;
+  --bg: #f7ede2; --surface: #ffffff; --line: #ecd9c6;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { font-family: "IBM Plex Sans Thai", system-ui, sans-serif; color: var(--ink); background: #1d0507; overflow: hidden; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, .disp { font-family: "Prompt", "IBM Plex Sans Thai", sans-serif; margin: 0; }
+
+/* ===== โครงสไลด์ ===== */
+.deck { position: fixed; inset: 0; }
+.slide { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; opacity: 0; visibility: hidden; transform: translateX(40px); transition: opacity .45s ease, transform .45s ease, visibility 0s .45s;
+  background: radial-gradient(900px 520px at 105% -10%, rgba(231, 194, 93, .35), transparent 60%), radial-gradient(800px 520px at -10% 110%, rgba(176, 20, 29, .12), transparent 60%), var(--bg);
+  padding: clamp(18px, 3.2vw, 44px) clamp(16px, 4vw, 64px) 110px; }
+.slide.on { opacity: 1; visibility: visible; transform: none; transition: opacity .45s ease, transform .45s ease; }
+.slide.prev { transform: translateX(-40px); }
+.slide.dark { color: #fff; background: radial-gradient(800px 500px at 100% 0%, rgba(255, 206, 110, .35), transparent 65%), radial-gradient(700px 500px at 0% 100%, rgba(255, 150, 110, .16), transparent 60%), linear-gradient(150deg, var(--deeper), var(--deep) 45%, var(--red) 80%, #c8682a); }
+.inner { max-width: 1240px; margin: 0 auto; min-height: 100%; display: flex; flex-direction: column; }
+
+/* ===== หัวสไลด์ ===== */
+.kicker { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: .9rem; color: var(--red); background: #fff; border-radius: 999px; padding: 5px 14px 5px 6px; box-shadow: 0 4px 14px rgba(124, 13, 20, .1); align-self: flex-start; }
+.kicker b { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; border-radius: 999px; padding: 0 8px; color: #fff; background: linear-gradient(180deg, var(--red-2), var(--red)); font-family: Prompt; font-size: .82rem; }
+.dark .kicker { background: rgba(255, 255, 255, .14); color: var(--gold-2); box-shadow: none; }
+.title { font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1.15; margin-top: 12px; color: var(--deep); font-weight: 700; }
+.title em { font-style: normal; color: var(--red); }
+.dark .title { color: #fff; } .dark .title em { color: var(--gold-2); }
+.lead { font-size: clamp(1rem, 1.5vw, 1.18rem); color: var(--muted); margin: 8px 0 0; max-width: 820px; line-height: 1.6; }
+.dark .lead { color: rgba(255, 236, 220, .9); }
+
+/* ===== สไลด์ภาพหน้าจอ: ซ้ายขั้นตอน ขวาภาพ ===== */
+.split { display: grid; grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.6fr); gap: clamp(18px, 3vw, 40px); align-items: center; margin-top: 18px; flex: 1; }
+.split.wide { grid-template-columns: minmax(260px, .75fr) minmax(0, 1.8fr); }
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.steps li { display: flex; gap: 12px; align-items: flex-start; background: #fff; border-radius: 16px; padding: 12px 14px; box-shadow: 0 1px 2px rgba(80, 10, 15, .05), 0 8px 22px rgba(80, 10, 15, .07); cursor: default; transition: transform .2s, box-shadow .2s; }
+.steps li.hot { transform: translateX(4px); box-shadow: 0 0 0 2px var(--gold), 0 10px 26px rgba(124, 13, 20, .16); }
+.num { flex: none; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-family: Prompt; font-weight: 700; font-size: .95rem;
+  background: linear-gradient(180deg, var(--red-2), var(--red)); box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--gold); }
+.steps div > b { display: block; font-family: Prompt; font-weight: 600; color: var(--deep); font-size: 1.04rem; }
+.steps div > span { display: block; color: var(--muted); font-size: .93rem; line-height: 1.5; margin-top: 2px; }
+.tip { margin-top: 12px; display: flex; gap: 10px; align-items: flex-start; background: linear-gradient(135deg, #fff6dc, #ffeec4); color: var(--gold-ink); border-radius: 16px; padding: 12px 14px; font-size: .93rem; line-height: 1.55; }
+.tip::before { content: "💡"; font-size: 1.15rem; line-height: 1.3; }
+
+/* กรอบจอคอม / มือถือ */
+.screen { position: relative; border-radius: 16px; background: #fff; box-shadow: 0 30px 70px rgba(60, 6, 10, .28), 0 6px 18px rgba(60, 6, 10, .12); overflow: hidden; }
+.screen .bar { height: 30px; background: #f2e6da; display: flex; align-items: center; gap: 7px; padding: 0 12px; }
+.screen .bar i { width: 11px; height: 11px; border-radius: 50%; background: #e3b2a7; }
+.screen .bar i:nth-child(2) { background: #ecd08a; } .screen .bar i:nth-child(3) { background: #a9d2a0; }
+.screen .bar span { margin-left: 12px; flex: 1; max-width: 340px; height: 18px; border-radius: 9px; background: #fff; font-size: 11px; color: #9a8582; display: flex; align-items: center; padding: 0 10px; white-space: nowrap; overflow: hidden; }
+.shot { position: relative; line-height: 0; }
+.shot img { width: 100%; height: auto; display: block; }
+.phone { position: relative; width: min(300px, 78vw); margin: 0 auto; border-radius: 42px; background: #1b0f11; padding: 11px; box-shadow: 0 30px 70px rgba(60, 6, 10, .35); }
+.phone .shot { border-radius: 32px; overflow: hidden; }
+.phones { display: flex; gap: clamp(10px, 2vw, 26px); justify-content: center; align-items: flex-start; flex-wrap: wrap; margin-top: 18px; }
+.phones .phone { width: min(270px, 80vw); }
+
+/* หมุดชี้ */
+.mk { position: absolute; border-radius: 10px; box-shadow: 0 0 0 3px var(--gold), 0 0 0 7px rgba(231, 194, 93, .35); pointer-events: none; animation: glow 2.2s ease-in-out infinite; }
+.mk.hot { box-shadow: 0 0 0 3px var(--red-2), 0 0 0 9px rgba(210, 42, 51, .3); }
+.mk .num { position: absolute; left: -14px; top: -14px; width: 28px; height: 28px; font-size: .85rem; pointer-events: auto; cursor: pointer; }
+@keyframes glow { 50% { box-shadow: 0 0 0 3px var(--gold), 0 0 0 12px rgba(231, 194, 93, .12); } }
+@media (prefers-reduced-motion: reduce) { .mk { animation: none; } .slide { transition: none; } }
+
+/* ===== ปก ===== */
+.cover { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: center; flex: 1; }
+.brand { display: flex; align-items: center; gap: 14px; }
+.seal { width: 64px; height: 64px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #fbf1dc 70%, #f3e0b4); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0, 0, 0, .3); flex: none; }
+.seal img { width: 52px; height: 52px; object-fit: contain; }
+.brand b { font-family: Prompt; font-size: 1.4rem; display: block; line-height: 1.1; }
+.brand span { color: var(--gold-2); }
+.cover h1 { font-size: clamp(2.3rem, 6vw, 4.6rem); line-height: 1.05; margin-top: 22px; font-weight: 800; }
+.cover h1 em { font-style: normal; color: var(--gold-2); }
+.cover p { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: rgba(255, 236, 220, .9); line-height: 1.6; }
+.cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; padding: 14px 26px; border-radius: 999px; background: linear-gradient(180deg, #f6dc8f, #dcae45); color: #4a1d06; font-family: Prompt; font-weight: 700; font-size: 1.1rem; border: 0; cursor: pointer; box-shadow: 0 10px 24px rgba(0, 0, 0, .25); }
+.cover .screen { transform: perspective(1400px) rotateY(-10deg) rotateX(3deg); }
+
+/* ===== ในกล่องมีอะไรบ้าง ===== */
+.box { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 22px; }
+.item { background: #fff; border-radius: 20px; padding: 18px 16px; box-shadow: 0 1px 2px rgba(80, 10, 15, .05), 0 10px 26px rgba(80, 10, 15, .08); position: relative; overflow: hidden; }
+.item::after { content: ""; position: absolute; right: -30px; top: -30px; width: 90px; height: 90px; border-radius: 50%; background: var(--c); opacity: .12; }
+.item .ic { width: 50px; height: 50px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; background: var(--c); color: #fff; box-shadow: 0 8px 18px color-mix(in srgb, var(--c) 40%, transparent); }
+.item b { display: block; font-family: Prompt; font-weight: 600; margin-top: 12px; font-size: 1.05rem; color: var(--deep); }
+.item span { display: block; color: var(--muted); font-size: .9rem; margin-top: 3px; line-height: 1.45; }
+.item .qty { position: absolute; right: 12px; top: 12px; font-family: Prompt; font-size: .78rem; font-weight: 600; color: var(--c); background: color-mix(in srgb, var(--c) 12%, #fff); padding: 2px 9px; border-radius: 999px; z-index: 1; }
+
+/* บทบาท */
+.roles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 22px; }
+.role { background: #fff; border-radius: 22px; padding: 20px; box-shadow: 0 10px 28px rgba(80, 10, 15, .08); border-top: 0; position: relative; overflow: hidden; }
+.role .ic { width: 58px; height: 58px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.9rem; background: var(--c); }
+.role h3 { margin-top: 12px; color: var(--deep); font-size: 1.2rem; }
+.role ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); line-height: 1.8; font-size: .95rem; }
+
+/* 9 ขั้น */
+.nine { display: grid; grid-template-columns: repeat(9, 1fr); gap: 10px; margin-top: 22px; }
+.st { background: #fff; border-radius: 18px; padding: 14px 10px; text-align: center; box-shadow: 0 10px 24px rgba(80, 10, 15, .08); position: relative; }
+.st .n { width: 46px; height: 46px; margin: 0 auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-family: Prompt; font-weight: 700; font-size: 1.2rem; background: var(--c); box-shadow: 0 6px 14px color-mix(in srgb, var(--c) 45%, transparent); }
+.st b { display: block; font-family: Prompt; font-weight: 600; font-size: .92rem; margin-top: 10px; color: var(--deep); line-height: 1.3; }
+.st span { display: block; font-size: .78rem; color: var(--muted); margin-top: 4px; line-height: 1.35; }
+.legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 18px; font-size: .95rem; color: var(--muted); }
+.legend i { display: inline-block; width: 22px; height: 22px; border-radius: 50%; vertical-align: -6px; margin-right: 6px; }
+
+/* เล่ม */
+.pages { display: flex; justify-content: center; align-items: flex-end; margin-top: 26px; flex-wrap: wrap; gap: 10px; }
+.pg { width: min(220px, 40vw); background: #fff; border-radius: 6px; box-shadow: 0 20px 40px rgba(60, 6, 10, .25); overflow: hidden; position: relative; }
+.pg img { width: 100%; display: block; }
+.pg em { position: absolute; left: 8px; bottom: 8px; font-style: normal; font-family: Prompt; font-size: .8rem; font-weight: 600; background: var(--red); color: #fff; border-radius: 999px; padding: 2px 10px; }
+.toc-pages { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; justify-content: center; }
+.toc-pages span { background: #fff; border-radius: 999px; padding: 6px 14px; font-size: .9rem; box-shadow: 0 4px 12px rgba(80, 10, 15, .06); }
+.toc-pages b { color: var(--red); font-family: Prompt; margin-right: 4px; }
+
+/* ปฏิทิน */
+.timeline { margin-top: 22px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+.tl { background: #fff; border-radius: 18px; padding: 16px 14px; box-shadow: 0 10px 24px rgba(80, 10, 15, .08); position: relative; }
+.tl .when { display: inline-block; font-family: Prompt; font-weight: 600; font-size: .82rem; color: #fff; background: var(--c); border-radius: 999px; padding: 3px 11px; }
+.tl b { display: block; font-family: Prompt; margin-top: 10px; color: var(--deep); font-size: 1rem; }
+.tl span { display: block; color: var(--muted); font-size: .88rem; margin-top: 4px; line-height: 1.5; }
+
+/* คำถามพบบ่อย */
+.faq { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
+.qa { background: #fff; border-radius: 18px; padding: 14px 16px; box-shadow: 0 8px 22px rgba(80, 10, 15, .07); }
+.qa b { display: flex; gap: 10px; font-family: Prompt; font-weight: 600; color: var(--deep); }
+.qa b::before { content: "?"; flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--c, var(--red)); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: .85rem; }
+.qa span { display: block; color: var(--muted); margin: 6px 0 0 36px; font-size: .93rem; line-height: 1.55; }
+
+/* ปิดท้าย */
+.end { text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+.end .seal { width: 110px; height: 110px; } .end .seal img { width: 90px; height: 90px; }
+.end h1 { font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 800; }
+.end .url { font-family: Prompt; font-weight: 600; font-size: clamp(1.1rem, 2.2vw, 1.5rem); background: rgba(255, 255, 255, .14); padding: 10px 22px; border-radius: 999px; color: var(--gold-2); }
+
+/* ===== แถบควบคุม ===== */
+.nav { position: fixed; left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 20; display: flex; align-items: center; gap: 8px; padding: 7px; border-radius: 999px;
+  background: rgba(40, 6, 10, .82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0, 0, 0, .3); color: #fff; }
+.nav button { border: 0; background: rgba(255, 255, 255, .1); color: #fff; height: 42px; min-width: 42px; border-radius: 999px; cursor: pointer; font: 600 .95rem "Prompt", sans-serif; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 14px; }
+.nav button:hover { background: rgba(255, 255, 255, .2); }
+.nav button:disabled { opacity: .35; cursor: default; }
+.nav .next { background: linear-gradient(180deg, #f3d27a, #d9a93c); color: #4a1d06; }
+.nav .count { font: 600 .9rem Prompt, sans-serif; min-width: 64px; text-align: center; color: var(--gold-2); }
+.nav svg { width: 18px; height: 18px; }
+.progress { position: fixed; left: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--red-2), var(--gold)); z-index: 30; transition: width .4s; }
+.toc { position: fixed; inset: 0; z-index: 40; background: rgba(25, 4, 6, .6); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 16px; }
+.toc.on { display: flex; }
+.toc .panel { background: #fff; border-radius: 22px; width: min(720px, 100%); max-height: 86vh; overflow: auto; padding: 20px; }
+.toc h2 { color: var(--deep); font-size: 1.3rem; margin-bottom: 10px; }
+.toc ol { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 16px; }
+.toc li { break-inside: avoid; }
+.toc a { display: flex; gap: 10px; align-items: center; padding: 8px 10px; border-radius: 12px; color: var(--ink); text-decoration: none; font-size: .95rem; }
+.toc a:hover, .toc a.cur { background: #fbeaeb; color: var(--red); }
+.toc a i { font-style: normal; font-family: Prompt; font-weight: 600; color: var(--red); min-width: 26px; }
+.toc .sec { column-span: all; font-family: Prompt; font-weight: 600; color: var(--muted); font-size: .82rem; margin: 10px 10px 2px; }
+.hint { position: fixed; right: 16px; top: 14px; z-index: 20; font-size: .8rem; color: rgba(255, 255, 255, .85); background: rgba(40, 6, 10, .55); padding: 6px 12px; border-radius: 999px; }
+
+/* ===== จอเล็ก ===== */
+@media (max-width: 1100px) { .box { grid-template-columns: repeat(3, 1fr); } .nine { grid-template-columns: repeat(5, 1fr); } .timeline { grid-template-columns: repeat(4, 1fr); } .roles { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 860px) {
+  .split, .split.wide, .cover { grid-template-columns: 1fr; }
+  .split .media { order: -1; }
+  .cover .screen { transform: none; }
+  .faq { grid-template-columns: 1fr; }
+  .toc ol { columns: 1; }
+  .hint { display: none; }
+}
+@media (max-width: 600px) {
+  .box { grid-template-columns: repeat(2, 1fr); gap: 10px; } .item { padding: 14px 12px; } .item .ic { width: 42px; height: 42px; font-size: 1.3rem; }
+  .nine { grid-template-columns: repeat(3, 1fr); } .timeline { grid-template-columns: repeat(2, 1fr); } .roles { grid-template-columns: 1fr; }
+  .nav .lab { display: none; } .nav button { padding: 0 12px; }
+  .mk .num { width: 22px; height: 22px; font-size: .72rem; left: -10px; top: -10px; }
+  .screen .bar { height: 22px; } .screen .bar span { display: none; }
+}
+@media print { body { overflow: visible; } .nav, .progress, .hint, .toc { display: none !important; } .deck { position: static; } .slide { position: relative; opacity: 1; visibility: visible; transform: none; page-break-after: always; min-height: 100vh; } }
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<div class="hint">ใช้ปุ่มลูกศร ← → หรือปัดหน้าจอ</div>
+<main class="deck" id="deck"></main>
+<nav class="nav" aria-label="ควบคุมสไลด์">
+  <button id="bPrev" aria-label="สไลด์ก่อนหน้า"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg><span class="lab">ก่อนหน้า</span></button>
+  <button id="bToc" aria-label="สารบัญ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span class="count" id="cnt">1 / 1</span></button>
+  <button id="bNext" class="next" aria-label="สไลด์ถัดไป"><span class="lab">ถัดไป</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+</nav>
+<div class="toc" id="toc" role="dialog" aria-label="สารบัญ"><div class="panel"><h2>สารบัญคู่มือ</h2><ol id="tocList"></ol></div></div>
+
+<script>
+const MARKS = {"landing":{"w":1280,"h":800,"m":[{"x":25.85,"y":75.89,"w":19.98,"h":6.77},{"x":4,"y":75.85,"w":21.07,"h":6.85}]},"login":{"w":1280,"h":800,"m":[{"x":35.47,"y":48.14,"w":29.06,"h":7.22},{"x":35.47,"y":60.81,"w":29.06,"h":7.22},{"x":60.78,"y":61.79,"w":3.28,"h":5.25},{"x":35.47,"y":73.42,"w":29.06,"h":6.75}]},"a-settings":{"w":1280,"h":800,"m":[{"x":21.95,"y":32.25,"w":9.38,"h":15},{"x":21.95,"y":87.24,"w":18.16,"h":4.66},{"x":60.16,"y":87.24,"w":18.16,"h":4.66},{"x":79.26,"y":87.24,"w":18.16,"h":4.38}]},"a-rooms":{"w":1280,"h":800,"m":[{"x":43.2,"y":33.31,"w":6.34,"h":4.91},{"x":22.27,"y":40.21,"w":1.41,"h":2.25},{"x":46.46,"y":60.76,"w":32.59,"h":4.54}]},"a-students":{"w":1280,"h":800,"m":[{"x":21.95,"y":34.09,"w":26.56,"h":4.75},{"x":49.3,"y":33.93,"w":11.88,"h":4.91},{"x":21.95,"y":48.1,"w":75.47,"h":19.19},{"x":20.63,"y":77.85,"w":12.96,"h":4.91}]},"a-users":{"w":1280,"h":800,"m":[{"x":22.19,"y":36.86,"w":18.11,"h":4.66},{"x":41.23,"y":36.86,"w":18.11,"h":4.66},{"x":60.27,"y":36.86,"w":18.11,"h":4.66},{"x":22.19,"y":50.6,"w":7.46,"h":4.91}]},"a-users-bulk":{"w":1280,"h":800,"m":[{"x":22.19,"y":34.62,"w":75.23,"h":19.19},{"x":22.19,"y":55.59,"w":8.94,"h":4.91}]},"a-users-table":{"w":1280,"h":800,"m":[{"x":43.75,"y":81.46,"w":8.44,"h":4.13},{"x":58.75,"y":72.96,"w":1.41,"h":2.25},{"x":89.43,"y":72.41,"w":4.46,"h":3.88}]},"t-att":{"w":1280,"h":800,"m":[{"x":73.19,"y":65.35,"w":9.61,"h":4.38},{"x":83.58,"y":64.82,"w":13.84,"h":4.91},{"x":45.54,"y":76.32,"w":5.63,"h":4.54}]},"t-grades-check":{"w":1280,"h":1019,"m":[{"x":21.95,"y":10.77,"w":18.28,"h":26.09},{"x":22.66,"y":29.18,"w":16.88,"h":3.43},{"x":21.95,"y":92.19,"w":11.64,"h":3.85}]},"t-grades":{"w":1280,"h":891,"m":[{"x":21.95,"y":62.83,"w":75.47,"h":12.89},{"x":83.31,"y":81.34,"w":14.11,"h":3.49},{"x":77.7,"y":92.36,"w":3.63,"h":3.18}]},"t-traits":{"w":1280,"h":800,"m":[{"x":90.84,"y":65.35,"w":6.58,"h":4.38},{"x":39.09,"y":75.83,"w":6.56,"h":3.88},{"x":39.09,"y":82.03,"w":6.56,"h":4.13},{"x":63.89,"y":51.34,"w":12.88,"h":4.91}]},"t-eval":{"w":1280,"h":800,"m":[{"x":57.94,"y":65.35,"w":13.92,"h":4.38},{"x":81.13,"y":76.32,"w":5.63,"h":4.54},{"x":89.57,"y":76.32,"w":5.63,"h":4.54}]},"t-duties":{"w":1280,"h":800,"m":[{"x":41.16,"y":75.95,"w":1.41,"h":2.25},{"x":67.97,"y":51.34,"w":12.88,"h":4.91}]},"t-comment":{"w":1280,"h":800,"m":[{"x":39.09,"y":77.14,"w":29.69,"h":4.13},{"x":69.72,"y":75.08,"w":27.23,"h":7.32}]},"t-send":{"w":1280,"h":800,"m":[{"x":31.29,"y":69.73,"w":8.06,"h":4.91},{"x":40.13,"y":69.73,"w":11.63,"h":4.91},{"x":52.54,"y":69.73,"w":20.5,"h":4.91},{"x":79.89,"y":85.53,"w":5.28,"h":3.88}]},"t-returns":{"w":1280,"h":800,"m":[{"x":21.95,"y":69.73,"w":75.47,"h":11.38},{"x":65.53,"y":86.65,"w":15.2,"h":7.14}]},"t-info":{"w":1280,"h":990,"m":[{"x":20.63,"y":24.1,"w":78.13,"h":10.58},{"x":88.02,"y":51.37,"w":9.4,"h":3.96},{"x":21.95,"y":67.99,"w":75.47,"h":9.2},{"x":80.27,"y":92.87,"w":6.93,"h":3.14}]},"t-student":{"w":1280,"h":800,"m":[{"x":21.95,"y":75.62,"w":17.66,"h":4.91},{"x":36.6,"y":29.6,"w":62,"h":8.2},{"x":81.93,"y":16.87,"w":6.73,"h":3.88}]},"t-home":{"w":1280,"h":800,"m":[{"x":1.09,"y":13.5,"w":17.19,"h":58.74},{"x":70.19,"y":1.63,"w":17.18,"h":3.79},{"x":20.63,"y":23.95,"w":18.83,"h":16.21},{"x":88.31,"y":1.4,"w":10.44,"h":4.25}]},"t-print":{"w":1280,"h":1035,"m":[{"x":73.67,"y":23.77,"w":9.93,"h":3.79},{"x":84.38,"y":23.67,"w":13.04,"h":3.89},{"x":85.13,"y":32.47,"w":6.55,"h":3},{"x":21.95,"y":92.24,"w":13.25,"h":3.89}]},"t-book":{"w":1280,"h":800,"m":[{"x":22.19,"y":29.93,"w":18.44,"h":4.38},{"x":41.41,"y":29.93,"w":24.69,"h":4.38},{"x":66.88,"y":29.4,"w":4.66,"h":4.91},{"x":72.32,"y":29.4,"w":7.81,"h":4.91}]},"t-roster":{"w":1280,"h":800,"m":[{"x":76.31,"y":15.05,"w":6.09,"h":4.38},{"x":83.19,"y":14.52,"w":8.55,"h":4.91},{"x":72.46,"y":26.2,"w":8.12,"h":3.88}]},"t-guide":{"w":1280,"h":800,"m":[{"x":20.63,"y":23.83,"w":78.13,"h":4.79},{"x":26.25,"y":83.88,"w":12.04,"h":3.88}]},"t-chpw":{"w":1280,"h":800,"m":[{"x":35.47,"y":36.49,"w":29.06,"h":7.22},{"x":35.47,"y":49.15,"w":29.06,"h":7.22},{"x":35.47,"y":61.82,"w":29.06,"h":7.22}]},"t-welcome":{"w":1280,"h":800,"m":[{"x":34.53,"y":72.22,"w":15.08,"h":5.78},{"x":50.39,"y":72.22,"w":15.08,"h":5.78}]},"m-home":{"w":390,"h":844,"m":[{"x":3.08,"y":90.6,"w":93.85,"h":7.98},{"x":4.1,"y":25.67,"w":91.79,"h":15.36},{"x":77.08,"y":91.43,"w":18.05,"h":6.32}]},"m-room":{"w":390,"h":844,"m":[{"x":5.13,"y":33.68,"w":89.74,"h":4.27},{"x":5.5,"y":58.8,"w":66,"h":4.6}]},"m-more":{"w":390,"h":844,"m":[{"x":4.1,"y":91.67,"w":91.79,"h":6.44}]}};
+const URL_SYS = "pp6-watbangpoon.web.app";
+
+// ===== เนื้อหาสไลด์ =====
+// type: cover | box | roles | screen | nine | book | phones | timeline | faq | end
+const S = [
+  { sec: "เริ่มต้น", type: "cover", t: "หน้าปก" },
+  { type: "box", t: "ในระบบมีอะไรบ้าง", k: "แกะกล่อง", title: "ในระบบ ปพ.6 <em>มีอะไรบ้าง</em>",
+    lead: "ทุกอย่างที่ครูต้องใช้ตอนปลายภาค รวมอยู่ในเว็บเดียว เปิดได้จากคอม แท็บเล็ต และมือถือ" },
+  { type: "roles", t: "ใครใช้ทำอะไร", k: "บทบาท", title: "ใครใช้<em>ทำอะไร</em>", lead: "แต่ละคนเห็นเมนูไม่เหมือนกัน ระบบเปิดให้เฉพาะส่วนที่เกี่ยวข้อง" },
+  { type: "screen", t: "เข้าสู่ระบบ", k: "ขั้นแรก", img: "landing", title: "เปิดเว็บ แล้ว<em>เข้าสู่ระบบ</em>",
+    lead: "เปิดลิงก์ระบบที่ได้จากผู้ดูแล บนคอมหรือมือถือก็ได้",
+    steps: [["กด \"เข้าด้วยชื่อผู้ใช้และรหัสผ่าน\"", "ครูส่วนใหญ่ใช้ปุ่มนี้ ใช้ชื่อผู้ใช้และรหัสที่ผู้ดูแลให้"], ["หรือ \"เข้าสู่ระบบด้วย Google\"", "สำหรับผู้ที่ใช้อีเมลโรงเรียน @wbps.ac.th"]],
+    tip: "เปิดลิงก์จากในแอป LINE แล้วล็อกอิน Google ไม่ได้ ให้กด ⋮ แล้วเลือก \"เปิดในเบราว์เซอร์\" หรือใช้ชื่อผู้ใช้แทน" },
+  { type: "screen", t: "กรอกชื่อผู้ใช้", k: "เข้าสู่ระบบ", img: "login", title: "กรอก<em>ชื่อผู้ใช้</em>และรหัสผ่าน",
+    steps: [["ชื่อผู้ใช้", "ภาษาอังกฤษ เช่น somsri ถ้าแป้นเป็นภาษาไทย ระบบแปลงให้เอง"], ["รหัสผ่าน", "ตัวเลข 6 หลักที่ได้รับ"], ["รูปตา", "กดเพื่อดูว่าพิมพ์รหัสถูกไหม"], ["กดเข้าสู่ระบบ", "ถ้าผิด ระบบจะบอกว่าผิดที่ชื่อผู้ใช้หรือรหัสผ่าน"]],
+    tip: "ลืมรหัสผ่าน แจ้งผู้ดูแลระบบให้กด \"ตั้งรหัสใหม่\" ได้ทันที" },
+  { type: "screen", t: "เข้าครั้งแรก", k: "ครั้งแรก", img: "t-welcome", title: "เข้าครั้งแรก มี<em>กล่องแนะนำ</em>",
+    steps: [["เปิดคู่มือ", "ไปหน้าคู่มือในระบบ อ่านทีละหัวข้อ"], ["เริ่มใช้งาน", "ปิดกล่องแล้วเริ่มทำงานได้เลย กล่องนี้จะไม่ขึ้นอีก"]] },
+  { type: "screen", t: "เปลี่ยนรหัสผ่าน", k: "ครั้งแรก", img: "t-chpw", title: "เปลี่ยน<em>รหัสผ่าน</em>เป็นของตัวเอง",
+    lead: "เมนูซ้ายล่าง \"เปลี่ยนรหัสผ่าน\" (มือถือ: แถบล่าง › อื่น ๆ)",
+    steps: [["รหัสผ่านเดิม", "รหัสที่ได้จากผู้ดูแล"], ["รหัสผ่านใหม่", "ตัวเลขอย่างน้อย 6 ตัวที่จำง่าย"], ["พิมพ์ซ้ำอีกครั้ง", "แล้วกดบันทึกรหัสผ่านใหม่"]] },
+  { type: "screen", t: "หน้าจอหลัก", k: "รู้จักหน้าจอ", img: "t-home", title: "รู้จัก<em>หน้าจอหลัก</em>",
+    steps: [["เมนู", "ห้องเรียนของฉัน · พิมพ์ ปพ.6 · รายชื่อแต่ละชั้น · คู่มือ"], ["ภาคเรียนปัจจุบัน", "จุดเขียว = เปิดบันทึก · จุดแดง = ล็อกแล้ว แก้ไม่ได้"], ["การ์ดห้องเรียน", "กดเพื่อเข้าห้อง แถบสีบอกว่าทำไปกี่ขั้นแล้ว"], ["ชื่อและบทบาท", "ตรวจว่าเข้าบัญชีของตัวเอง"]] },
+
+  { sec: "ครูประจำชั้น 9 ขั้น", type: "nine", t: "ภาพรวม 9 ขั้น", k: "หัวใจของระบบ", title: "ครูทำงานตาม <em>9 ขั้น</em> ต่อภาคเรียน", lead: "ทำเรียงจากซ้ายไปขวา ทุกช่องบันทึกอัตโนมัติ ไม่ต้องกดบันทึก ทำไม่เสร็จปิดไปก่อนได้" },
+  { type: "screen", t: "ขั้น 1 ข้อมูลนักเรียน", k: "ขั้นที่ 1", img: "t-info", title: "ข้อมูลนักเรียน<em>และรูปถ่าย</em>",
+    steps: [["วงกลม 9 ขั้น", "สีทอง = เสร็จแล้ว · วงแดง = ขั้นที่ต้องทำต่อ กดวงไหนก็ไปขั้นนั้น"], ["เพิ่มนักเรียน", "เพิ่มทีละคน หรือวางรายชื่อจาก Excel ได้ (เฉพาะห้องตัวเอง)"], ["อัปโหลดรูปทั้งห้อง", "ตั้งชื่อไฟล์เป็นเลขประจำตัว เช่น 4101.jpg ระบบตัดรูป 3×4 ให้"], ["กรอกข้อมูลรายคน", "กดเพื่อเปิดฟอร์มข้อมูลส่วนตัวของนักเรียนคนนั้น"]],
+    tip: "กรอกครั้งเดียวตอนต้นปี ปีต่อไปแค่ตรวจและแก้ส่วนที่เปลี่ยน" },
+  { type: "screen", t: "ข้อมูลรายคน", k: "ขั้นที่ 1", img: "t-student", title: "หน้า<em>ข้อมูลนักเรียน</em>รายคน",
+    steps: [["อัปโหลดรูป", "เลือกรูปจากเครื่องหรือถ่ายจากมือถือ"], ["ใบแสดงผลการเรียน", "ดูหรือเปลี่ยนใบเกรดของคนนี้ได้"], ["ไปคนถัดไป", "กรอกต่อเนื่องได้โดยไม่ต้องกลับไปที่ตาราง"]] },
+  { type: "screen", t: "ขั้น 2 เวลาเรียน", k: "ขั้นที่ 2", img: "t-att", title: "กรอก<em>เวลาเรียน</em>ทุกสิ้นเดือน",
+    steps: [["เลือกเดือน", "จำนวนวันเต็มของเดือนแสดงอยู่ในวงเล็บ"], ["มาครบทุกคนในเดือนนี้", "กดทีเดียว ทุกคนได้วันเต็ม"], ["แก้เฉพาะคนที่ขาด", "พิมพ์จำนวนวันที่มาจริง"]],
+    tip: "ใครเวลาเรียนต่ำกว่า 80% ระบบขึ้นสีแดงเตือน (เข้าข่าย มส)" },
+  { type: "screen", t: "ขั้น 3 อัปโหลดใบเกรด", k: "ขั้นที่ 3", img: "t-grades-check", title: "อัปโหลด<em>ใบแสดงผลการเรียน</em>",
+    lead: "ลากไฟล์ PDF จากโปรแกรมของโรงเรียนมาวาง ไฟล์เดียวทั้งห้องได้",
+    steps: [["ระบบอ่านใบทีละหน้า", "ตรวจความคมชัดให้ ขึ้นว่า \"คุณภาพผ่าน\""], ["จับคู่นักเรียนให้เอง", "อ่านรหัสนักเรียนในใบ ถ้าผิดเลือกชื่อใหม่ได้"], ["กดบันทึกภาพ", "บันทึกทั้งหมดในครั้งเดียว"]],
+    tip: "ประถมใส่ปีละครั้งตอนภาคเรียนที่ 2 · มัธยมใส่ทุกภาค" },
+  { type: "screen", t: "ขั้น 3 ตรวจและยืนยัน", k: "ขั้นที่ 3", img: "t-grades", title: "ตรวจภาพ แล้ว<em>ยืนยัน</em>",
+    steps: [["กล่องอัปโหลด", "อัปโหลดเพิ่มได้ตลอด ภาพใหม่แทนภาพเดิม"], ["ยืนยันภาพที่รอตรวจทั้งหมด", "ตรวจแล้วกดทีเดียวทั้งห้อง"], ["ดูภาพ / เปลี่ยนภาพรายคน", "ใช้แก้ใบที่ผิดคนหรือไม่ชัด"]] },
+  { type: "screen", t: "ขั้น 4 คุณลักษณะ", k: "ขั้นที่ 4", img: "t-traits", title: "ประเมิน<em>คุณลักษณะ 8 ข้อ</em>",
+    steps: [["ตั้งทุกข้อทั้งห้อง", "เลือกครั้งเดียว ทุกคนทุกข้อได้ระดับเดียวกัน"], ["ตั้งทั้งคอลัมน์", "ตั้งข้อเดียวให้ทั้งห้อง"], ["แก้รายคน", "ค่าเริ่มต้นเป็น \"ดี\" แก้เฉพาะคนที่ต่าง"], ["ตรวจแล้ว ยืนยันขั้นนี้", "กดเมื่อตรวจครบ วงกลมจะเป็นสีทอง"]] },
+  { type: "screen", t: "ขั้น 5 ประเมินอื่น", k: "ขั้นที่ 5", img: "t-eval", title: "ประเมินอื่น<em>และสุขภาพ</em>",
+    steps: [["ตั้งทั้งห้อง", "อ่าน คิดวิเคราะห์ เขียน · สมรรถนะ · กิจกรรม"], ["น้ำหนัก (กก.)", "กรอกรายคน"], ["ส่วนสูง (ซม.)", "ขั้นนี้ผ่านเมื่อกรอกน้ำหนักส่วนสูงครบ"]] },
+  { type: "screen", t: "ขั้น 6 หน้าที่", k: "ขั้นที่ 6", img: "t-duties", title: "หน้าที่<em>ที่โรงเรียน</em>",
+    steps: [["ติ๊กทุกข้อไว้ให้แล้ว", "เอาออกเฉพาะคนที่ไม่ได้ปฏิบัติ"], ["ยืนยันขั้นนี้", "กดเมื่อตรวจครบ"]] },
+  { type: "screen", t: "ขั้น 7 ความเห็นครู", k: "ขั้นที่ 7", img: "t-comment", title: "เขียน<em>ความเห็นครู</em>",
+    steps: [["ข้อความสำเร็จรูป", "เลือกแล้วแก้ต่อได้ (ถ้าผู้ดูแลตั้งไว้)"], ["ช่องความเห็น", "พิมพ์เองได้เลย ความเห็นนี้พิมพ์ลงในเล่ม"]] },
+  { type: "screen", t: "ขั้น 8 พิมพ์เล่ม", k: "ขั้นที่ 8", img: "t-send", title: "<em>พิมพ์เล่ม</em>ส่งผู้ปกครอง",
+    steps: [["พิมพ์ทั้งห้อง", "เปิดเล่มของทุกคนแล้วสั่งพิมพ์ทีเดียว"], ["โหลดทั้งห้อง (ZIP)", "ได้ PDF แยกคนละไฟล์ ไปพิมพ์ร้านหรือส่งไลน์"], ["ทำเครื่องหมายว่าส่งแล้ว", "กดหลังแจกเล่มให้นักเรียน"], ["PDF รายคน", "โหลดเล่มของคนเดียว"]] },
+  { type: "screen", t: "หน้าเล่มรายงาน", k: "ขั้นที่ 8", img: "t-book", title: "หน้า<em>เล่มรายงาน</em>",
+    steps: [["เลือกนักเรียน", "รายคน หรือทั้งห้อง"], ["หน้าที่พิมพ์", "ทั้งเล่ม · เฉพาะหน้าที่เปลี่ยนภาคนี้ · เฉพาะหน้าที่ผู้ปกครองเซ็น"], ["พิมพ์", "กระดาษ A4 · ขอบ (Margins) = ไม่มี · ขนาด 100%"], ["โหลด PDF", "ได้ไฟล์ A4 ฟอนต์ TH Sarabun"]] },
+  { type: "book", t: "ในเล่ม ปพ.6 มีอะไร", k: "เล่มรายงาน", title: "ในเล่ม <em>ปพ.6</em> มีอะไรบ้าง", lead: "กระดาษ A4 · 1 เล่มใช้ 3 ปี · ประถม 11 หน้า มัธยม 14 หน้า · ใบเกรดครบทุกปีทุกภาค" },
+  { type: "screen", t: "ขั้น 9 รับเล่มคืน", k: "ขั้นที่ 9", img: "t-returns", title: "<em>รับเล่มคืน</em> ด้วยการสแกน",
+    lead: "สแกนหน้าที่ผู้ปกครองเซ็นทั้งปึกเป็น PDF ไฟล์เดียว หรือถ่ายรูปทีละหน้า",
+    steps: [["ลากไฟล์สแกนมาวาง", "ระบบอ่าน QR ท้ายหน้า แยกเข้าแฟ้มของแต่ละคนให้"], ["ดูว่าได้หน้าไหนแล้ว", "สถานะเปลี่ยนเป็น \"รับคืนแล้ว\""]],
+    tip: "หน้าที่อ่าน QR ไม่ได้ เลือกนักเรียนและหน้าเองแล้วกดบันทึก · อย่าขีดเขียนทับ QR" },
+
+  { sec: "เมนูอื่น ๆ", type: "screen", t: "เมนูพิมพ์ ปพ.6", k: "เมนู", img: "t-print", title: "เมนู <em>พิมพ์ ปพ.6</em>",
+    steps: [["พิมพ์ทั้งห้อง", "เปิดเล่มทุกคนพร้อมพิมพ์"], ["โหลดทั้งห้อง (ZIP)", "PDF แยกรายคน"], ["ดู/พิมพ์ · PDF รายคน", "พร้อมสถานะเล่มของแต่ละคน"], ["แบบฟอร์มเปล่า (PDF)", "เล่มไม่มีข้อมูล สำหรับกรอกด้วยมือ"]] },
+  { type: "screen", t: "รายชื่อแต่ละชั้น", k: "เมนู", img: "t-roster", title: "<em>รายชื่อ</em>แต่ละชั้น",
+    steps: [["เลือกชั้น", "ทุกชั้น หรือชั้นเดียว"], ["โหลด Excel / พิมพ์", "พิมพ์ห้องละหน้า ใช้เป็นใบเช็กชื่อได้"], ["เพิ่มนักเรียน", "ครูประจำชั้นเพิ่มในห้องตัวเองได้"]] },
+  { type: "screen", t: "คู่มือในระบบ", k: "เมนู", img: "t-guide", title: "<em>คู่มือ</em>ในระบบ",
+    steps: [["แท็บตามบทบาท", "เริ่มต้น · 9 ขั้น · ปฏิทินงาน · คำถามที่พบบ่อย"], ["ปุ่มพาไปหน้านั้น", "กดแล้วไปทำขั้นนั้นได้ทันที"]] },
+  { type: "phones", t: "ใช้บนมือถือ", k: "มือถือ", title: "ใช้บน<em>มือถือ</em>ได้ครบ", lead: "เมนูย้ายไปอยู่แถบล่าง วงกลม 9 ขั้นพอดีจอ" ,
+    phones: [["m-home", ["แถบเมนูล่าง", "การ์ดห้องเรียน", "อื่น ๆ (เปลี่ยนรหัส / ออกจากระบบ)"]], ["m-room", ["วงกลม 9 ขั้น", "ไปขั้นถัดไป"]], ["m-more", ["ชื่อผู้ใช้ · เปลี่ยนรหัส · ออกจากระบบ"]]] },
+
+  { sec: "ผู้ดูแลระบบ", type: "screen", t: "ตั้งค่าระบบ", k: "ผู้ดูแล", img: "a-settings", title: "ผู้ดูแล: <em>ตั้งค่าระบบ</em>",
+    steps: [["ตราโรงเรียน", "อัปโหลดได้ ระบบลบพื้นหลังให้เอง"], ["ชื่อโรงเรียน", "พิมพ์บนปกเล่มและหัวกระดาษ"], ["ปีการศึกษา", "พ.ศ."], ["ภาคเรียน", "เปลี่ยนเมื่อขึ้นภาคใหม่"]],
+    tip: "เลื่อนลงในหน้าเดียวกัน: สังกัด ที่อยู่ คำขวัญ วันเรียนแต่ละเดือน ข้อความสำเร็จรูป ล็อกภาค และสำรองข้อมูล" },
+  { type: "screen", t: "ห้องเรียน", k: "ผู้ดูแล", img: "a-rooms", title: "ผู้ดูแล: <em>ห้องเรียน</em>",
+    steps: [["เพิ่มห้อง", "เลือกชั้น ห้องเริ่ม และจำนวนห้อง"], ["ชื่อห้องไม่มีทับ", "โรงเรียนชั้นละห้องเดียว: ป.1 แทน ป.1/1"], ["ครูประจำชั้น", "ใส่ได้หลายคน คั่นด้วยจุลภาค"]] },
+  { type: "screen", t: "นักเรียน", k: "ผู้ดูแล", img: "a-students", title: "ผู้ดูแล: <em>นักเรียน</em>",
+    steps: [["นำเข้าจาก Excel", "ไฟล์ .xlsx หรือ .csv"], ["ดาวน์โหลดแม่แบบ", "กรอกตามคอลัมน์แล้วนำเข้า"], ["วางรายชื่อหลายคน", "คัดลอกจาก Excel มาวางได้เลย"], ["เพิ่มรายคน", "แก้ไข/ย้ายห้อง/ย้ายออก ทำได้ในตาราง"]] },
+  { type: "screen", t: "สร้างบัญชีครู", k: "ผู้ดูแล", img: "a-users", title: "ผู้ดูแล: <em>สร้างบัญชีครู</em>",
+    steps: [["ชื่อ-สกุลครู", "ชื่อที่จะขึ้นบนปกเล่ม"], ["ชื่อผู้ใช้", "ภาษาอังกฤษ a-z 0-9"], ["รหัสผ่านเริ่มต้น", "แก้เป็นรหัสที่ต้องการได้"], ["สร้างบัญชี", "ได้การ์ดชื่อผู้ใช้/รหัส คัดลอกส่งครู"]] },
+  { type: "screen", t: "สร้างหลายบัญชี", k: "ผู้ดูแล", img: "a-users-bulk", title: "สร้าง<em>หลายบัญชี</em>พร้อมกัน",
+    steps: [["แถวละคน", "ชื่อ-สกุล, ชื่อผู้ใช้, ห้อง, รหัสผ่าน (ไม่ใส่รหัส = สุ่มให้)"], ["สร้างทุกบัญชี", "แล้วโหลดรายการรหัสเป็น Excel เก็บไว้แจกครู"]] },
+  { type: "screen", t: "บทบาทและห้อง", k: "ผู้ดูแล", img: "a-users-table", title: "กำหนด<em>บทบาทและห้อง</em>",
+    steps: [["บทบาท", "ครูที่ปรึกษา · ผู้บริหาร · ผู้ดูแลระบบ"], ["ห้องที่ประจำชั้น", "คนเดียวหลายบทบาท: เลือกบทบาทสูงสุดแล้วติ๊กห้อง"], ["บันทึก", "บันทึกทีละแถว · มีปุ่มตั้งรหัสใหม่และปิดบัญชีใต้ชื่อ"]] },
+
+  { sec: "สรุป", type: "timeline", t: "ปฏิทินงาน", k: "ตลอดปี", title: "<em>ปฏิทินงาน</em>ตลอดปีการศึกษา" },
+  { type: "faq", t: "ปัญหาที่พบบ่อย", k: "ช่วยเหลือ", title: "ปัญหา<em>ที่พบบ่อย</em>" },
+  { type: "end", t: "ปิดท้าย" },
+];
+
+const BOX = [
+  ["📋", "9 ขั้นตอนชัดเจน", "วงกลมบอกว่าทำถึงไหน บันทึกอัตโนมัติ", "--c1", "9 ขั้น"],
+  ["📤", "อัปโหลดใบเกรด", "PDF ทั้งห้องไฟล์เดียว จับคู่นักเรียนให้เอง", "--c2", ""],
+  ["📘", "เล่ม ปพ.6 A4", "1 เล่มใช้ 3 ปี ใบเกรดครบทุกภาค", "--c9", "11–14 หน้า"],
+  ["🖨️", "พิมพ์ / โหลด PDF", "รายคน หรือทั้งห้องเป็น ZIP", "--c6", ""],
+  ["🔳", "สแกน QR รับเล่มคืน", "แยกเข้าแฟ้มนักเรียนให้เอง", "--c4", ""],
+  ["📝", "แบบฟอร์มเปล่า", "พิมพ์ไปกรอกด้วยมือได้", "--c3", "PDF"],
+  ["👥", "รายชื่อแต่ละชั้น", "ชาย/หญิง พิมพ์หรือโหลด Excel", "--c5", ""],
+  ["📊", "รายงานผู้บริหาร", "ความคืบหน้าทุกห้อง", "--c7", ""],
+  ["📱", "ใช้ได้ทุกอุปกรณ์", "คอม แท็บเล็ต มือถือ", "--c8", ""],
+  ["🔒", "แบ่งสิทธิ์ชัดเจน", "ครูเห็นเฉพาะห้องตัวเอง", "--c1", "4 บทบาท"],
+];
+const ROLES = [
+  ["👩‍🏫", "ครูประจำชั้น", ["ทำ 9 ขั้นในห้องตัวเอง", "เพิ่มนักเรียนในห้อง", "พิมพ์ / โหลดเล่ม", "สแกนรับเล่มคืน"], "#ffe3d6"],
+  ["🧑‍💼", "ผู้บริหาร", ["ดูรายงานทุกห้อง", "ดูเล่มรายคน", "รายชื่อแต่ละชั้น", "แก้ได้เฉพาะห้องที่ประจำชั้น"], "#e0ecff"],
+  ["🛠️", "ผู้ดูแลระบบ", ["ตั้งค่า ห้อง นักเรียน", "สร้างบัญชีครู", "ล็อกภาค สำรองข้อมูล", "เลื่อนชั้นสิ้นปี"], "#fff0c9"],
+  ["👑", "ผู้ดูแลระบบหลัก", ["ทำได้ทุกอย่าง", "แต่งตั้ง/ถอดผู้ดูแล", "อัปเดตระบบ", "ดูแลฝั่ง Firebase"], "#ffe0ee"],
+];
+const NINE = [["ข้อมูลนักเรียน", "และรูปถ่าย"], ["เวลาเรียน", "ทุกสิ้นเดือน"], ["ใบเกรด", "อัปโหลดทั้งห้อง"], ["คุณลักษณะ", "8 ข้อ"], ["ประเมินอื่น", "สุขภาพ"], ["หน้าที่", "ที่โรงเรียน"], ["ความเห็นครู", "รายคน"], ["พิมพ์เล่ม", "ส่งผู้ปกครอง"], ["รับเล่มคืน", "สแกน QR"]];
+const TL = [["พ.ค.", "ต้นปีการศึกษา", "ผู้ดูแลตั้งค่า เพิ่มห้อง นักเรียน บัญชีครู · ครูทำขั้นที่ 1", "--c6"], ["ทุกเดือน", "สิ้นเดือน", "ครูกรอกเวลาเรียน (ขั้น 2)", "--c5"], ["ระหว่างภาค", "ทยอยทำ", "คุณลักษณะ ประเมินอื่น หน้าที่ ความเห็น (ขั้น 4–7)", "--c4"], ["ปลายภาค", "ได้ใบเกรดแล้ว", "อัปโหลดใบเกรด (ขั้น 3) แล้วพิมพ์เล่ม (ขั้น 8)", "--c2"], ["หลังส่งเล่ม", "1–2 สัปดาห์", "รับเล่มคืน สแกนอัปโหลด (ขั้น 9)", "--c1"], ["ปิดภาค", "ผู้ดูแล", "ล็อกภาค · สำรองข้อมูล · เปลี่ยนภาคเรียน", "--c7"], ["มี.ค.", "สิ้นปี", "เลื่อนชั้น ข้อมูลเก่าอยู่ครบ ต่อเล่มเดิม", "--c9"]];
+const FAQ = [["ลืมรหัสผ่าน", "แจ้งผู้ดูแล กด \"ตั้งรหัสใหม่\" แล้วเปลี่ยนเป็นรหัสของตัวเอง"], ["ขึ้นว่ารหัสผ่านไม่ถูกต้อง", "กดรูปตาดูว่าพิมพ์ถูกไหม ตรวจ Caps Lock"], ["เข้าระบบไม่ได้ / network", "กด Ctrl + F5 · ลองหน้าต่างไม่ระบุตัวตน · ลองเน็ตมือถือ"], ["เปิดจาก LINE แล้วล็อกอินไม่ได้", "กด ⋮ › เปิดในเบราว์เซอร์ หรือใช้ชื่อผู้ใช้แทน"], ["ใบเกรดไม่ผ่านคุณภาพ", "ใช้ไฟล์ PDF จากโปรแกรม หรือถ่ายใหม่ให้ชัด"], ["พิมพ์แล้วหน้าเกิน", "A4 · ขอบ = ไม่มี · ขนาด 100% หรือพิมพ์จาก PDF"], ["สแกน QR ไม่ได้", "สแกน 200 dpi ขึ้นไป อย่าให้ QR พับหรือมีรอยปากกา"], ["ช่องเป็นสีเทาแก้ไม่ได้", "ภาคเรียนถูกล็อก หรือไม่ใช่ห้องของคุณ แจ้งผู้ดูแล"]];
+
+// ===== วาดสไลด์ =====
+const esc = (s) => String(s);
+const kick = (k, i) => `<div class="kicker"><b>${i}</b>${k}</div>`;
+function marksHtml(name, n) {
+  const M = MARKS[name]; if (!M) return "";
+  return M.m.slice(0, n).map((m, i) => m ? `<div class="mk" data-i="${i}" style="left:${m.x}%;top:${m.y}%;width:${m.w}%;height:${m.h}%"><span class="num">${i + 1}</span></div>` : "").join("");
+}
+const desk = (name, n) => `<div class="screen"><div class="bar"><i></i><i></i><i></i><span>${URL_SYS}</span></div><div class="shot"><img src="img/${name}.webp" alt="" loading="lazy" width="${MARKS[name]?.w || 1280}" height="${MARKS[name]?.h || 800}">${marksHtml(name, n)}</div></div>`;
+const phone = (name, n) => `<div class="phone"><div class="shot"><img src="img/${name}.webp" alt="" loading="lazy">${marksHtml(name, n)}</div></div>`;
+
+function render(s, i) {
+  const n = i + 1;
+  switch (s.type) {
+    case "cover": return `<section class="slide dark"><div class="inner"><div class="cover">
+      <div><div class="brand"><div class="seal"><img src="img/logo.png" alt="ตราโรงเรียน"></div><div><b>ระบบ ปพ.6</b><span>โรงเรียนวัดบางปูน</span></div></div>
+        <h1>คู่มือการใช้งาน<br><em>ฉบับเข้าใจง่าย</em></h1>
+        <p>ดูทีละหน้า มีภาพหน้าจอจริง และหมุดตัวเลขชี้ว่าต้องกดตรงไหน<br>ใช้ได้ทั้งครูประจำชั้น ผู้บริหาร และผู้ดูแลระบบ</p>
+        <button class="cta" data-go="1">เริ่มดูคู่มือ →</button></div>
+      <div>${desk("landing", 0)}</div></div></div></section>`;
+    case "box": return `<section class="slide"><div class="inner">${kick(s.k, "📦")}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
+      <div class="box">${BOX.map(([ic, b, sp, c, q]) => `<div class="item" style="--c:var(${c})">${q ? `<span class="qty">${q}</span>` : ""}<div class="ic">${ic}</div><b>${b}</b><span>${sp}</span></div>`).join("")}</div></div></section>`;
+    case "roles": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
+      <div class="roles">${ROLES.map(([ic, h, li, c]) => `<div class="role"><div class="ic" style="--c:${c}">${ic}</div><h3>${h}</h3><ul>${li.map((x) => `<li>${x}</li>`).join("")}</ul></div>`).join("")}</div></div></section>`;
+    case "screen": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2>${s.lead ? `<p class="lead">${s.lead}</p>` : ""}
+      <div class="split ${s.steps.length <= 2 ? "wide" : ""}"><div><ol class="steps">${s.steps.map(([b, sp], j) => `<li data-i="${j}"><span class="num">${j + 1}</span><div><b>${b}</b><span>${sp}</span></div></li>`).join("")}</ol>
+        ${s.tip ? `<div class="tip">${s.tip}</div>` : ""}</div>
+        <div class="media">${desk(s.img, s.steps.length)}</div></div></div></section>`;
+    case "nine": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
+      <div class="nine">${NINE.map(([b, sp], j) => `<div class="st" style="--c:var(--c${j + 1})"><div class="n">${j + 1}</div><b>${b}</b><span>${sp}</span></div>`).join("")}</div>
+      <div class="legend"><span><i style="background:linear-gradient(180deg,#f1cf7a,#c08a1e)"></i>วงสีทอง = ทำเสร็จแล้ว</span><span><i style="background:#fff;box-shadow:inset 0 0 0 3px #b0141d"></i>วงขอบแดง = ขั้นที่ต้องทำต่อ</span><span><i style="background:#fff;box-shadow:inset 0 0 0 3px #ecd9c6"></i>วงเทา = ยังไม่ถึง</span></div>
+      <div style="margin-top:18px">${desk("t-info", 1)}</div></div></section>`;
+    case "book": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
+      <div class="pages">${[["page-1", "ปกหน้า"], ["page-4", "ใบแสดงผลการเรียน"], ["page-7", "คุณลักษณะ"], ["page-10", "ความคิดเห็น"]].map(([f, l], j) => `<div class="pg" style="transform:rotate(${[-5, -1.5, 1.5, 5][j]}deg)"><img src="img/book-${f}.webp" alt="${l}" loading="lazy"><em>${l}</em></div>`).join("")}</div>
+      <div class="toc-pages">${["ปกหน้า", "คำชี้แจง", "ข้อมูลส่วนตัว / เวลาเรียน", "ใบแสดงผลการเรียนทุกปีทุกภาค", "คุณลักษณะ / การประเมิน", "ความเห็นครู", "ความเห็นผู้ปกครอง", "ความคิดเห็นเกี่ยวกับนักเรียน", "ปกหลัง"].map((x, j) => `<span><b>${j + 1}</b>${x}</span>`).join("")}</div></div></section>`;
+    case "phones": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2><p class="lead">${s.lead}</p>
+      <div class="phones">${s.phones.map(([img, labels]) => `<div><div>${phone(img, labels.length)}</div><ol class="steps" style="margin-top:14px;max-width:290px">${labels.map((l, j) => `<li data-i="${j}"><span class="num">${j + 1}</span><div><b>${l}</b></div></li>`).join("")}</ol></div>`).join("")}</div></div></section>`;
+    case "timeline": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2>
+      <div class="timeline">${TL.map(([w, b, sp, c]) => `<div class="tl" style="--c:var(${c})"><span class="when">${w}</span><b>${b}</b><span>${sp}</span></div>`).join("")}</div></div></section>`;
+    case "faq": return `<section class="slide"><div class="inner">${kick(s.k, n)}<h2 class="title">${s.title}</h2>
+      <div class="faq">${FAQ.map(([q, a], j) => `<div class="qa" style="--c:var(--c${(j % 9) + 1})"><b>${q}</b><span>${a}</span></div>`).join("")}</div></div></section>`;
+    case "end": return `<section class="slide dark"><div class="inner"><div class="end"><div class="seal"><img src="img/logo.png" alt="ตราโรงเรียน"></div>
+      <h1>พร้อมใช้งานแล้ว 🎉</h1><p class="lead" style="text-align:center">ติดตรงไหน ดูเมนู "คู่มือ" ในระบบ หรือแจ้งผู้ดูแลระบบของโรงเรียน</p>
+      <div class="url">${URL_SYS}</div><p class="lead" style="text-align:center;margin-top:20px">พัฒนาโดย เพจตามติดชีวิต KruSos</p>
+      <button class="cta" data-go="0">กลับไปหน้าแรก</button></div></div></section>`;
+  }
+}
+
+const deck = document.getElementById("deck");
+deck.innerHTML = S.map(render).join("");
+const slides = [...deck.children];
+let cur = 0;
+function show(i, push = true) {
+  i = Math.max(0, Math.min(slides.length - 1, i));
+  slides.forEach((s, k) => { s.classList.toggle("on", k === i); s.classList.toggle("prev", k < i); });
+  cur = i; slides[i].scrollTop = 0;
+  document.getElementById("cnt").textContent = `${i + 1} / ${slides.length}`;
+  document.getElementById("prog").style.width = `${(i + 1) / slides.length * 100}%`;
+  document.getElementById("bPrev").disabled = i === 0;
+  document.getElementById("bNext").disabled = i === slides.length - 1;
+  if (push) history.replaceState(null, "", `#${i + 1}`);
+  [...document.querySelectorAll("#tocList a")].forEach((a) => a.classList.toggle("cur", +a.dataset.go === i));
+  // โหลดภาพของสไลด์ถัดไปไว้ก่อน
+  slides[i + 1]?.querySelectorAll("img[loading=lazy]").forEach((im) => (im.loading = "eager"));
+}
+document.getElementById("bPrev").onclick = () => show(cur - 1);
+document.getElementById("bNext").onclick = () => show(cur + 1);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") { e.preventDefault(); show(cur + 1); }
+  if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); show(cur - 1); }
+  if (e.key === "Home") show(0); if (e.key === "End") show(slides.length - 1);
+  if (e.key === "Escape") toc.classList.remove("on");
+});
+// ปัดซ้าย/ขวาบนมือถือ
+let tx = 0, ty = 0;
+deck.addEventListener("touchstart", (e) => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+deck.addEventListener("touchend", (e) => { const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.4) show(cur + (dx < 0 ? 1 : -1)); }, { passive: true });
+// สารบัญ
+const toc = document.getElementById("toc");
+document.getElementById("tocList").innerHTML = S.map((s, i) => `${s.sec ? `<li class="sec">${s.sec}</li>` : ""}<li><a href="#${i + 1}" data-go="${i}"><i>${i + 1}</i>${s.t}</a></li>`).join("");
+document.getElementById("bToc").onclick = () => toc.classList.add("on");
+toc.addEventListener("click", (e) => { if (e.target === toc) toc.classList.remove("on"); });
+document.addEventListener("click", (e) => { const g = e.target.closest("[data-go]"); if (g) { e.preventDefault(); toc.classList.remove("on"); show(+g.dataset.go); } });
+// ชี้ขั้นตอนแล้วหมุดบนภาพเด่นขึ้น (และกลับกัน)
+document.addEventListener("pointerover", (e) => {
+  const li = e.target.closest(".steps li, .mk .num"); const sl = slides[cur];
+  sl.querySelectorAll(".hot").forEach((x) => x.classList.remove("hot"));
+  if (!li) return;
+  const i = (li.closest("li") || li.closest(".mk")).dataset.i, box = li.closest(".phones > div") || sl;
+  box.querySelectorAll(`.steps li[data-i="${i}"], .mk[data-i="${i}"]`).forEach((x) => x.classList.add("hot"));
+});
+show(Math.max(0, (parseInt(location.hash.slice(1)) || 1) - 1), false);
+</script>
+</body>
+</html>
